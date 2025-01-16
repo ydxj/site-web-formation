@@ -6,6 +6,9 @@ import Courses from "./pages/Courses/Courses";
 import Contact from "./pages/Contact/Contact";
 import Login from "./pages/Auth/Login";
 
+
+
+
 const ConfigueRouter = () => {
   return (
     <Router>
@@ -15,6 +18,7 @@ const ConfigueRouter = () => {
         <Route path="/courses" element={<Courses />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        
       </Routes>
     </Router>
   );
