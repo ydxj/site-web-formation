@@ -44,7 +44,7 @@ const Home = () => {
                 alt="Learn Anywhere"
                 style={styles.featureIcon}
               />
-              <p>Apprenez où que vous soyez</p>
+              <p><strong>Apprenez où que vous soyez</strong></p>
             </div>
             <div style={styles.feature}>
               <img
@@ -52,7 +52,7 @@ const Home = () => {
                 alt="Mentor Support"
                 style={styles.featureIcon}
               />
-              <p>Un mentor pour vous accompagner</p>
+              <p><strong>Un mentor pour vous accompagner</strong></p>
             </div>
           </div>
         </section>
@@ -65,7 +65,7 @@ const Home = () => {
               Mettez à jour vos connaissances, développez de nouvelles compétences, obtenez notre formation en ligne,
               dédiée aux médecins et au personnel hospitalier, vous offre les outils nécessaires pour comprendre et
               anticiper ces nouveaux défis.
-            </p>
+            </p><br/>
             <button style={styles.button}>Démarrer mon inscription</button>
           </div>
           <div>
@@ -81,10 +81,10 @@ const Home = () => {
         <section style={styles.hospitalsSection}>
           <h2>Nos Hopitaux</h2>
           <div style={styles.hospitalsLinks}>
-            <a href="/" onClick={(e) => e.preventDefault()}>Hôpital des spécialités</a>
-            <a href="/" onClick={(e) => e.preventDefault()}>Hôpital mère et enfant</a>
-            <a href="/" onClick={(e) => e.preventDefault()}>Centre d'oncologie Hassan II</a>
-            <a href="/" onClick={(e) => e.preventDefault()}>Hôpital de la santé mentale</a>
+            <a href="http://www.chuoujda.ma/nos_hopitaux/hopital_des_specialites.html">Hôpital des spécialités</a>
+            <a href="http://www.chuoujda.ma/nos_hopitaux/hopital_mere_enfant.html">Hôpital mère et enfant</a>
+            <a href="http://www.chuoujda.ma/nos_hopitaux/centre__oncologie_h2.html">Centre d'oncologie Hassan II</a>
+            <a href="http://www.chuoujda.ma/nos_hopitaux/hopital_sante_mentale.html">Hôpital de la santé mentale</a>
           </div>
 
           <div style={styles.hospitalsDetails}>
