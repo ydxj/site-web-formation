@@ -39,7 +39,6 @@ function Autentification() {
         }
 
         if (valid) {
-            
             console.log('Authentification réussie');
             navigate('/courses'); 
         }
@@ -50,7 +49,7 @@ function Autentification() {
     return (
         <div className="auth-container">
             <div className="auth-logo">
-                <Link to="/home">
+                <Link to="/">
                     <img src="logochu.jpg" alt="Logo CHU" />
                 </Link>
             </div>
