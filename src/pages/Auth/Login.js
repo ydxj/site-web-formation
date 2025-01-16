@@ -46,6 +46,7 @@ function Autentification() {
                 navigate('/courses');
                 setLoading(false);  // Reset loading after successful navigation
             }, 2000); // Simulating loading for 2 seconds
+           
         }
     }
 
