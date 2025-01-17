@@ -99,7 +99,7 @@ input {
 }
 
 .auth-button:hover {
-    background: #78036a;
+    background: rgb(36, 36, 148);
     transform: scale(1.05);
     transition: all 0.3s ease;
 }
