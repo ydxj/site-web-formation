@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaEnvelope, FaLock } from 'react-icons/fa';
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
 import './Login.css';
 
 function Autentification() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
     const [errorAuthentication, setErrorAuthentication] = useState('');
     const [errorPassword, setErrorPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -15,6 +16,8 @@ function Autentification() {
 
     const handleEmail = (e) => setEmail(e.target.value);
     const handlePassword = (e) => setPassword(e.target.value);
+
+    const togglePasswordVisibility = () => setShowPassword((prev) => !prev); // Toggle the showPassword state
 
     const validate = async () => {
         let valid = true;
@@ -43,7 +46,7 @@ function Autentification() {
                     email,
                     password,
                 });
-                console.log(response)
+                console.log(response);
                 if (response.data.Login) {
                     console.log('Authentification réussie!');
                     navigate('/courses');
@@ -70,7 +73,7 @@ function Autentification() {
                 <h1>Connectez-vous</h1>
                 <div className="input-group">
                     <input
-                        type='email'
+                        type="email"
                         value={email}
                         onChange={handleEmail}
                         placeholder="Email"
@@ -78,14 +81,22 @@ function Autentification() {
                     />
                 </div>
                 <p className="error" aria-live="assertive">{errorAuthentication}</p>
-                <div className="input-group">
+                <div className="input-group password-group">
                     <input
-                        type='password'
+                        type={showPassword ? 'text' : 'password'} // Toggle input type
                         value={password}
                         onChange={handlePassword}
                         placeholder="Mot de passe"
                         aria-label="Mot de passe"
                     />
+                    <button
+                        type="button"
+                        className="toggle-password"
+                        onClick={togglePasswordVisibility}
+                        aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+                    >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </button>
                 </div>
                 <p className="error" aria-live="assertive">{errorPassword}</p>
                 <hr />

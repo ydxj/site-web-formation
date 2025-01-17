@@ -133,6 +133,32 @@ input {
 .auth-footer a:hover {
     color: #df00c9;
 }
+.password-group {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.password-group input {
+    flex: 1;
+    padding-right: 40px; /* Leave space for the icon */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    color: #007bff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password:hover {
+    color: #0056b3;
+}
 
 @media screen and (max-width: 768px) {
     .auth-container {

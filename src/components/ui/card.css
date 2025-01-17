@@ -1,5 +1,6 @@
 
 .card {
+    direction: ltr;
     display: inline-block;
     max-width: 300px;
     margin: 30px 3px; 

@@ -4,10 +4,10 @@ import Menu from "../../components/ui/menu"
 function Courses(){
 return(
 	<div style={{display:'flex'}}>
-		<div >
+		<div style={{display:"block"}}>
 			<Menu/>
 		</div>
-		<div>
+		<div style={{width:"100%",marginRight:"20px",direction:"rtl"}}>
 			<Card/>
 			<Card/>
 			<Card/>
