@@ -18,7 +18,6 @@ function Autentification() {
     const handlePassword = (e) => setPassword(e.target.value);
 
     const togglePasswordVisibility = () => setShowPassword((prev) => !prev); // Toggle the showPassword state
-
     const validate = async () => {
         let valid = true;
 
@@ -42,11 +41,13 @@ function Autentification() {
         if (valid) {
             setLoading(true);
             try {
+                axios.defaults.withCredentials = true;
                 const response = await axios.post('http://localhost:8081/login', {
+                    withCredentials : true,
                     email,
                     password,
                 });
-                console.log(response);
+                console.log('hado mn login'+response);
                 if (response.data.Login) {
                     console.log('Authentification réussie!');
                     navigate('/courses');
