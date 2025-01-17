@@ -8,7 +8,7 @@ function Autentification() {
     const [password, setPassword] = useState("");
     const [errorAuthentication, setErrorAuthentication] = useState("");
     const [errorPassword, setErrorPassword] = useState("");
-    const [loading, setLoading] = useState(false);  // Added loading state
+    const [loading, setLoading] = useState(false);  
     const navigate = useNavigate();
 
     function handleEmail(e) {
