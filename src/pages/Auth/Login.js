@@ -10,6 +10,7 @@ function Autentification() {
     const [errorAuthentication, setErrorAuthentication] = useState('');
     const [errorPassword, setErrorPassword] = useState('');
     const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
     const handleEmail = (e) => setEmail(e.target.value);
