@@ -47,7 +47,7 @@ return(
 				<Inscription/>
 			</div>
 		</div>
->>>>>>> ec2a31afe1fb0a5fcce1c7a15da4e9d4cf2c8f02
+
 	</div>
 )
 }
