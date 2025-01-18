@@ -63,11 +63,11 @@ function Menu() {
                     <button className="close-button" onClick={toggleMenu}>
                         ✖
                     </button>
-
+                    <Link to="/">
                     <div className="menu-logo">
                         <img src="logochu2.png" alt="Logo" />
                     </div>
-
+                    </Link>
                     <h3>Bienvenue, {username}</h3>
 
                     {/* Common menu items for all roles */}
