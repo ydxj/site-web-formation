@@ -158,8 +158,14 @@ text-align: left;
 padding: 20px;
 background-color: white;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+color:rgba(15, 12, 12, 0.644);
+
 }
 
+.email{
+    text-decoration: none;
+    color:rgba(15, 12, 12, 0.644) ;
+}
 .map {
 height: 150px;
 border: 1px solid #ddd;

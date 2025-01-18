@@ -6,6 +6,7 @@ import Courses from "./pages/Courses/Courses";
 import Contact from "./pages/Contact/Contact";
 import Login from "./pages/Auth/Login";
 
+
 const ConfigueRouter = () => {
   return (
     <Router>

@@ -2,6 +2,8 @@ import React from "react";
 import "./Home.css";
 import { MdLocalHospital } from "react-icons/md";
 import { FaBaby, FaRibbon } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { FiPhone } from "react-icons/fi";
 import { GiBrain } from "react-icons/gi";
 
 const Home = () => {
@@ -119,17 +121,23 @@ const Home = () => {
 
         <div className="hospitals-details">
           <div>
-            <h3 className="localisation-title">CHU Oujda</h3>
+            <h4 className="localisation-title" style={{color:'rgb(67, 136, 214)'}}>CHU Oujda</h4>
             <p>Qui nous-sommes?</p>
             <p>Qu’est-ce qu’on fait</p>
           </div>
           <div>
-            <h3>Contact</h3>
-            <p>Email: <a href="mailto:contact@chuoujda.ma">contact@chuoujda.ma</a></p>
-            <p>Téléphone: +212 5 36 53 91 00</p>
-          </div>
+      <h4 style={{ color: "rgb(67, 136, 214)" }}>CONTACT</h4>
+      <p>
+        <MdEmail style={{ color: "rgba(15, 12, 12, 0.644)", marginRight: "8px" }} />
+        Email: <a href="mailto:contact@chuoujda.ma" className="email">contact@chuoujda.ma</a>
+      </p>
+      <p>
+        <FiPhone style={{ color: "rgba(15, 12, 12, 0.644)", marginRight: "8px" }} />
+        Téléphone: +212 5 36 53 91 00
+      </p>
+    </div>
           <div>
-            <h3>Localisation du CHU</h3>
+            <h4 style={{color:'rgb(28, 114, 212)'}}>LOCALISATION DU CHU</h4>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d52511.03187619542!2d-1.910535!3d34.656231!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6c8a1da16bc171e1!2sCentre%20Hospitalier%20Universitaire%20Mohammed%20VI!5e0!3m2!1sfr!2sma!4v1576061269449!5m2!1sfr!2sma"
               width="250"
