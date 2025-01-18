@@ -1,6 +1,5 @@
 
 import "../../components/ui/card.css";
-
 function Card() {
     
     return (
