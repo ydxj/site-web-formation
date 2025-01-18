@@ -71,16 +71,16 @@ function Menu() {
 
           {role === "admin" && (
             <>
-              <Link to="/dashboard" className="menu-icon">
+              <Link to="/courses" className="menu-icon">
                 <FaTachometerAlt /> Tableau de bord
               </Link>
-              <Link to="/training-management" className="menu-icon">
+              <Link to="/Gestionformation" className="menu-icon">
                 <FaBook /> Gestion des formations
               </Link>
-              <Link to="/employee-management" className="menu-icon">
+              <Link to="/Employee" className="menu-icon">
                 <FaUsers /> Gestion des employés
               </Link>
-              <Link to="/settings" className="menu-icon">
+              <Link to="/profile" className="menu-icon">
                 <FaCogs /> Paramètres
               </Link>
               <Link to="/help-support" className="menu-icon">

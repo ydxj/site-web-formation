@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Inscription.css"; // Assurez-vous de créer ce fichier CSS pour les styles
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 function Inscription() {
   const [nom, setnom] = useState("");
   const [service, setservice] = useState("");

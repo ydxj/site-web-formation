@@ -1,5 +1,6 @@
 import { useState } from "react";
 import './FormStyle.css';
+import Menu from "../../components/ui/menu";
 
 function FormationUsers() {
   const [email, setEmail] = useState('');
@@ -26,6 +27,9 @@ function FormationUsers() {
 
   return (
 	<div>
+    <div>
+      <Menu/>
+    </div>
     <div className="form-container">
 
       <div className="form-section">
