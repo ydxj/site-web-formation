@@ -1,4 +1,4 @@
-import Card from "../../components/ui/Card"
+// import Card from "../../components/ui/Card"
 import Menu from "../../components/ui/menu"
 import Inscription from "../users/Inscription"
 
@@ -47,6 +47,7 @@ return(
 				<Inscription/>
 			</div>
 		</div>
+>>>>>>> ec2a31afe1fb0a5fcce1c7a15da4e9d4cf2c8f02
 	</div>
 )
 }
