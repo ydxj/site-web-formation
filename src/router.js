@@ -11,6 +11,7 @@ import Formations from "./pages/Admin/Formation/formation";
 import NotFound from "./pages/404 Page/notFound";
 // import FormationCard from "./components/layout/FormationCard";
 import FormationUsers from "./pages/users/FormationUsers";
+import Dashboard from "./pages/Admin/dashboard/dashboard";
 
 const ConfigueRouter = () => {
   const [role, setRole] = useState(null); // Initialize as `null` to distinguish between loading and no role
@@ -46,7 +47,7 @@ const ConfigueRouter = () => {
         {/* Admin-Specific Routes */}
         {role === "admin" && (
           <>
-            <Route path="/courses" element={<Courses />} />
+            <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/Employee" element={<EmployeeManagement />} />
             <Route path="/Gestionformation" element={<Formations />} />
             <Route path="/profile" element={<FormationUsers />} />

@@ -1,0 +1,89 @@
+/* Conteneur principal du dashboard */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Centrer horizontalement */
+    justify-content: center; /* Centrer verticalement */
+    height: 100vh; /* Prendre toute la hauteur de l'écran */
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6f9;
+}
+
+/* Style du titre et sous-titre */
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+    font-size: 28px;
+    color: #333;
+}
+
+.dashboard-header p {
+    font-size: 16px;
+    color: #777;
+}
+
+/* Conteneur des cartes */
+.cards-container {
+    display: flex;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    gap: 20px;
+    flex-wrap: wrap; /* Adaptatif pour les petits écrans */
+}
+
+/* Style des cartes */
+.dashboard-card {
+    background: #6366f1;
+    color: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+.dashboard-card .icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+/* Titre de la carte */
+.dashboard-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Valeur affichée */
+.dashboard-card span {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* Lien "More info" */
+.dashboard-card a {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    font-size: 14px;
+    color: #d0d0ff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dashboard-card a:hover {
+    color: #fff;
+}

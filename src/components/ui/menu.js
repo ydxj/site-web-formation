@@ -71,7 +71,7 @@ function Menu() {
 
           {role === "admin" && (
             <>
-              <Link to="/courses" className="menu-icon">
+              <Link to="/Dashboard" className="menu-icon">
                 <FaTachometerAlt /> Tableau de bord
               </Link>
               <Link to="/Gestionformation" className="menu-icon">

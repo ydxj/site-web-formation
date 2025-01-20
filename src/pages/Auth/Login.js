@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEnvelope, FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
 import './Login.css';
 
@@ -50,7 +50,12 @@ function Autentification() {
                 console.log('hado mn login'+response);
                 if (response.data.Login) {
                     console.log('Authentification réussie!');
-                    navigate('/courses');
+                    if(response.data.role === 'admin'){
+                        navigate('/Dashboard')
+                    }
+                    else{
+                        navigate('/courses');
+                    }
                 } else {
                     setErrorAuthentication('Email ou mot de passe incorrect.');
                 }
