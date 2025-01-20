@@ -66,9 +66,7 @@ function Menu() {
             </div>
           </Link>
           <h2 style={{color:'#007bff'}}>Bienvenue, {username}</h2>
-
-         
-
+ 
           {role === "admin" && (
             <>
               <Link to="/Dashboard" className="menu-icon">

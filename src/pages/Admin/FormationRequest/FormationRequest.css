@@ -1,0 +1,67 @@
+/* Style général de la carte */
+.formation-card {
+    width: 100%;
+    max-width: 800px;
+    margin: 0; /* Supprime la marge autour pour coller les éléments */
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    transition: transform 0.3s ease-in-out;
+}
+
+.formation-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Titres */
+.formation-card h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.formation-card p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* Boutons */
+.buttons {
+    margin-top: 10px; /* Réduction de l'espace entre le texte et les boutons */
+    display: flex;
+    gap: 10px;
+}
+
+.formation-card button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Bouton Valider */
+.formation-card .validate {
+    background-color: #28a745;
+    color: white;
+}
+
+.formation-card .validate:hover {
+    background-color: #218838;
+}
+
+/* Bouton Refuser */
+.formation-card .reject {
+    background-color: #dc3545;
+    color: white;
+}
+
+.formation-card .reject:hover {
+    background-color: #c82333;
+}

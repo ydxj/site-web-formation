@@ -1,0 +1,77 @@
+/* Style pour le conteneur principal */
+.formation-container {
+    padding: 20px;
+}
+
+/* Style pour l'en-tête */
+.header h1 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+/* Style pour le conteneur de la table */
+.table-container {
+    margin-top: 20px;
+}
+
+/* Style pour la table */
+.formation-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+/* Style pour les lignes de la table */
+.table-row:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style pour les cellules de l'en-tête */
+.table-header-cell {
+    background-color: rgb(27, 27, 86);
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Style pour les cellules */
+.table-cell {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style pour les boutons */
+.status-button {
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: #4CAF50;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.status-button1 {
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: red;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.status-button:hover {
+    background-color: #45a049;
+}
+
+.status-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Style pour le titre de la table */
+.table-header h3 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
