@@ -50,12 +50,13 @@ function Autentification() {
                 console.log('hado mn login'+response);
                 if (response.data.Login) {
                     console.log('Authentification réussie!');
-                    if(response.data.role === 'admin'){
-                        navigate('/Dashboard')
-                    }
-                    else{
-                        navigate('/courses');
-                    }
+                    setTimeout(function() {
+                        if(response.data.role === 'admin'){
+                            navigate('/Dashboard')
+                        }else{
+                            navigate('/courses');
+                        }
+                    }, 3000);   
                 } else {
                     setErrorAuthentication('Email ou mot de passe incorrect.');
                 }

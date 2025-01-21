@@ -10,10 +10,14 @@ import { useState,useEffect } from 'react';
 function Dashboard() {
 	const [employees, setEmployees] = useState([]);
 	const [Formations, setFormations] = useState([]);
+	const [Request, setRequests] = useState([]);
+	const [RequestDone, setRequestDone] = useState([]);
 	const [Erreur, setError] = useState([]);
 	useEffect(() => {
 		fetchEmployees();
 		fetchFormations();
+        fetchRequests();
+        fetchRequestDone();
 	}, []);
 	const fetchFormations = async () => {
 		try {
@@ -36,6 +40,23 @@ function Dashboard() {
 		console.log(Erreur)
 	}
 	};
+    const fetchRequests = async () => {
+        try {
+          const response = await axios.get('http://localhost:8081/formation-requests');
+          console.log(response.data)
+          setRequests(response.data);
+        } catch (err) {
+          console.error('Error fetching requests:', err);
+        }
+    };
+    const fetchRequestDone = async () => {
+        try {
+          const response = await axios.get('http://localhost:8081/formation-requestsdone');
+          setRequestDone(response.data);
+        } catch (err) {
+          console.error('Error fetching requests:', err);
+        }
+    };
     return (
         <div className="dashboard-layout">
             <Menu className="sidebar" />
@@ -63,15 +84,15 @@ function Dashboard() {
 
                     <div className="dashboard-card">
                         <FaUserCheck className="icon" />
-                        <h2>ON TIME TODAY</h2>
-                        <span>0</span>
+                        <h2>Formation en attent</h2>
+                        <span>{Request.length}</span>
                         <Link to="/Attendance">More info <FaArrowRight /></Link>
                     </div>
 
                     <div className="dashboard-card">
                         <FaExclamationTriangle className="icon" />
-                        <h2>LATE TODAY</h2>
-                        <span>1</span>
+                        <h2>Formation Passées</h2>
+                        <span>{RequestDone.length}</span>
                         <Link to="/Late">More info <FaArrowRight /></Link>
                     </div>
                 </div>
