@@ -8,7 +8,8 @@ function EmployeeManagement() {
   const [newEmployee, setNewEmployee] = useState({
     name: '',
     email: '',
-    role: '',
+    role: 'user',
+    service:'',
   });
   const [editingEmployee, setEditingEmployee] = useState(null);
   const [error, setError] = useState('');
@@ -84,6 +85,7 @@ function EmployeeManagement() {
       name: employee.fullname,
       email: employee.email,
       role: employee.role,
+      service: employee.service,
     });
   };
 
@@ -124,11 +126,18 @@ function EmployeeManagement() {
 
             <div className="form-group">
             <label htmlFor="role">Rôle</label>
+            <select id="role" onChange={(e) => setNewEmployee({ ...newEmployee, role: e.target.value })} required>
+              <option value="user" >User</option>
+              <option value="admin">Admin</option>
+            </select>
+            </div>
+            <div className="form-group">
+            <label htmlFor="service">Service</label>
             <input
-                id="role"
+                id="service"
                 type="text"
-                value={newEmployee.role}
-                onChange={(e) => setNewEmployee({ ...newEmployee, role: e.target.value })}
+                value={newEmployee.service}
+                onChange={(e) => setNewEmployee({ ...newEmployee, service: e.target.value })}
                 required
             />
             </div>

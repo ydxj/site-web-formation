@@ -14,7 +14,13 @@ function Formations() {
   });
   const [editingFormation, setEditingFormation] = useState(null);
   const [error, setError] = useState('');
-
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
   useEffect(() => {
     fetchFormations();
   }, []);
@@ -177,8 +183,8 @@ function Formations() {
                 <tr key={formation.id}>
                   <td>{formation.titre}</td>
                   <td>{formation.duree}</td>
-                  <td>{formation.date_debut}</td>
-                  <td>{formation.date_fin}</td>
+                  <td>{formatDate(formation.date_debut)}</td>
+                  <td>{formatDate(formation.date_fin)}</td>
                   <td>{formation.description}</td>
                   <td>
                     <button
