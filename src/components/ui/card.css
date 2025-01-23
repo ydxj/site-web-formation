@@ -36,6 +36,17 @@
    
     transition: background-color 0.3s ease;
 }
+.card-button-green {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #297239;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
 
 .card-button:hover {
     background-color: #0056b3;

@@ -15,6 +15,7 @@ function FormationCard(){
     const fetchFormations = async () => {
     try {
         const response = await axios.get('http://localhost:8081/formations');
+        console.log(response.data)
         setFormations(response.data);
     } catch (err) {
         console.error('Error fetching formations:', err);

@@ -41,9 +41,9 @@ function Formations() {
     const formData = new FormData();
     formData.append('titre', newFormation.titre);
     formData.append('duree', newFormation.duree);
+    formData.append('description', newFormation.description);
     formData.append('date_debut', newFormation.date_debut);
     formData.append('date_fin', newFormation.date_fin);
-    formData.append('description', newFormation.description);
 
     if (newFormation.file) {
       formData.append('file', newFormation.file); // Attach the file

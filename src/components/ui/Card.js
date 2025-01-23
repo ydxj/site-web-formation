@@ -37,6 +37,15 @@ function Card(props) {
     }
   };
 
+  const handleDownload = () => {
+    if (formation.filepath) {
+      const fileUrl = `http://localhost:8081/${formation.filepath}`;
+      window.open(fileUrl, '_blank');
+    } else {
+      setMessage('Aucun fichier disponible pour ce formation.');
+    }
+  };
+
   const formatDate = (date) => {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
     return new Date(date).toLocaleDateString('fr-FR', options);
@@ -49,6 +58,7 @@ function Card(props) {
       <p><strong>Date :</strong> {formatDate(formation.date_debut)} - {formatDate(formation.date_fin)}</p>
       <p><strong>Description :</strong> {formation.description}</p>
       <button className="card-button" onClick={handleInscription}>S'inscrire</button>
+      {formation.filepath && <button className="card-button-green" onClick={handleDownload}>Download</button>}
       {message && <p className="message">{message}</p>}
     </div>
   );
