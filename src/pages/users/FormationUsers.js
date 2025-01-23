@@ -1,69 +1,96 @@
-import { useState } from "react";
-import './FormStyle.css';
+import { useState,useEffect } from "react";
+import axios from "axios";
+import "./FormStyle.css";
 import Menu from "../../components/ui/menu";
 
+
 function FormationUsers() {
-  const [email, setEmail] = useState('');
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [Id, setId] = useState("");
 
-  
-  function handleEmail(e) {
-    setEmail(e.target.value);
-  }
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      try {
+        const response = await axios.get("http://localhost:8081/menu", {
+          withCredentials: true,
+        });
+        if (response.data.valid) {
+          // console.log(response.data)
+          setId(response.data.id);
+        } else {
+          console.log("ERREUR")
+        }
+      } catch (error) {
+        console.error("Error fetching user role:", error);
+      }
+    };
 
-  function handleCurrentPassword(e) {
-    setCurrentPassword(e.target.value);
-  }
+    fetchUserRole();
+  }, []);
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setMessage("New password and confirmation do not match.");
+      return;
+    }
 
-  function handleNewPassword(e) {
-    setNewPassword(e.target.value);
-  }
-
-  function handleConfirmNewPassword(e) {
-    setConfirmPassword(e.target.value);
-  }
+    try {
+      const userId = Id;
+      // console.log(userId+" "+currentPassword+" "+newPassword)
+      const response = await axios.put(
+        `http://localhost:8081/employeess/${userId}/password`,
+        { currentPassword, newPassword }
+      );
+      setMessage(response.data.message);
+    } catch (error) {
+      setMessage(
+        error.response?.data?.message || "An error occurred. Please try again."
+      );
+    }
+  };
 
   return (
-	<div>
     <div>
-      <Menu/>
-    </div>
-    <div className="form-container">
-
-      <div className="form-section">
-        <h2>Change Email</h2>
-        
-        <div className="form-group">
-          <label><strong>Email:</strong></label>
-          <input type="email" value={email} onChange={handleEmail} className="form-input" />
+      <Menu />
+      <div className="form-container">
+        <div className="form-section">
+          <h2>Change Password</h2>
+          {message && <p className="message">{message}</p>}
+          <div className="form-group">
+            <label><strong>Current password:</strong></label>
+            <input
+              type="password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              className="form-input"
+            />
+          </div>
+          <div className="form-group">
+            <label><strong>New password:</strong></label>
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className="form-input"
+            />
+          </div>
+          <div className="form-group">
+            <label><strong>Confirm new password:</strong></label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="form-input"
+            />
+          </div>
+          <button className="form-button" onClick={handleChangePassword}>
+            Change Password
+          </button>
         </div>
-
-        <button className="form-button">Change Email</button>
       </div>
-
-      <div className="form-section">
-        <h2>Change Password</h2>
-        <div className="form-group">
-          <label><strong>Current password:</strong></label>
-          <input type="password" value={currentPassword} onChange={handleCurrentPassword} className="form-input" />
-        </div>
-
-        <div className="form-group">
-          <label><strong>New password:</strong></label>
-          <input type="password" value={newPassword} onChange={handleNewPassword} className="form-input" />
-        </div>
-
-        <div className="form-group">
-          <label><strong>Confirm New password:</strong></label>
-          <input type="password" value={confirmPassword} onChange={handleConfirmNewPassword} className="form-input" />
-        </div>
-
-        <button className="form-button">Change Password</button>
-      </div>
     </div>
-	</div>
   );
 }
 
