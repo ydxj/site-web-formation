@@ -227,3 +227,27 @@ border-radius: 8px;
     height: 120px;
 }
 }
+
+.Button-userName {
+    background-color: #207bdd; /* Bleu */
+    color: white; /* Texte blanc */
+    border: none;
+    border-radius: 50%; /* Bouton rond */
+    width: 50px; /* Largeur du bouton */
+    height: 50px; /* Hauteur du bouton */
+    font-size: 20px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+   
+  }
+  
+  .Button-userName:hover {
+    background-color: #0056b3;
+  }
+  
+  .Button-userName:active {
+    background-color: #004080; 
+  }

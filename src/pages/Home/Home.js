@@ -38,7 +38,7 @@ const Home = () => {
         </a>
         {username ?
         (<a href={ Role === "admin" ? "/dashboard" :"/courses"} >
-          <h6>{username}</h6>
+          <button className="Button-userName">{username[0]}</button>
         </a>)
         :
         (<a href="/login">
