@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
+import axios from "axios";
 import "./Home.css";
 import { MdLocalHospital } from "react-icons/md";
 import { FaBaby, FaRibbon } from "react-icons/fa";
@@ -7,6 +8,27 @@ import { FiPhone } from "react-icons/fi";
 import { GiBrain } from "react-icons/gi";
 
 const Home = () => {
+  const [username,setUsername] = useState("")
+  const [Role,setRole] = useState("")
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      try {
+        const response = await axios.get("http://localhost:8081/menu", {
+          withCredentials: true,
+        });
+        if (response.data.valid) {
+          setRole(response.data.role)
+          setUsername(response.data.username);
+        } else {
+          console.log("Erreur")
+        }
+      } catch (error) {
+        console.error("Error fetching user role:", error);
+      }
+    };
+
+    fetchUserRole();
+  }, []);
   return (
     <div className="container">
       {/* Header Section */}
@@ -14,13 +36,18 @@ const Home = () => {
         <a href="/">
           <img src="./assets/images/logo.png" alt="CHU Logo" className="logo" />
         </a>
-        <a href="/login">
+        {username ?
+        (<a href={ Role === "admin" ? "/dashboard" :"/courses"} >
+          <h6>{username}</h6>
+        </a>)
+        :
+        (<a href="/login">
           <img
             src="./assets/images/login.png"
             alt="Profile"
             className="profile-icon"
           />
-        </a>
+        </a>)}
       </div>
       <header className="header">
         <div className="hero">
