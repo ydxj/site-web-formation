@@ -11,6 +11,7 @@ function Formations() {
     date_debut: '',
     date_fin: '',
     description: '',
+    file : null,
   });
   const [editingFormation, setEditingFormation] = useState(null);
   const [error, setError] = useState('');
@@ -37,6 +38,17 @@ function Formations() {
 
   const addOrEditFormation = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('titre', newFormation.titre);
+    formData.append('duree', newFormation.duree);
+    formData.append('date_debut', newFormation.date_debut);
+    formData.append('date_fin', newFormation.date_fin);
+    formData.append('description', newFormation.description);
+
+    if (newFormation.file) {
+      formData.append('file', newFormation.file); // Attach the file
+    }
+
     if (editingFormation) {
       try {
 
@@ -53,7 +65,9 @@ function Formations() {
       }
     } else {
       try {
-        const response = await axios.post('http://localhost:8081/formations', newFormation);
+        const response = await axios.post('http://localhost:8081/formations',
+           formData,
+          { headers: { 'Content-Type': 'multipart/form-data' } });
         setFormations([...formations, { ...newFormation, id: response.data.id }]);
         resetForm();
       } catch (err) {
@@ -74,7 +88,7 @@ function Formations() {
   };
 
   const resetForm = () => {
-    setNewFormation({ titre: '', duree: '', date_debut: '', date_fin: '', description: '' });
+    setNewFormation({ titre: '', duree: '', date_debut: '', date_fin: '', description: '',file:null });
     setEditingFormation(null);
   };
 
@@ -86,6 +100,7 @@ function Formations() {
       date_debut: formation.date_debut,
       date_fin: formation.date_fin,
       description: formation.description,
+      file : formation.file,
     });
   };
 
@@ -154,6 +169,15 @@ function Formations() {
               onChange={(e) => setNewFormation({ ...newFormation, description: e.target.value })}
               required
             ></textarea>
+          </div>
+          <div className="form-group">
+            <label htmlFor="file">Insert File</label>
+            <input
+              type="file"
+              id="file"
+              onChange={(e) => setNewFormation({ ...newFormation, file: e.target.files[0] })}
+              required
+            />
           </div>
 
           <button type="submit" className="btn btn-primary">
