@@ -51,6 +51,7 @@ const ConfigueRouter = () => {
             <Route path="/Employee" element={<EmployeeManagement />} />
             <Route path="/Gestionformation" element={<Formations />} />
             <Route path="/profile" element={<FormationUsers />} />
+            <Route path="*" element={<NotFound />} />
           </>
         )}
 
@@ -59,12 +60,12 @@ const ConfigueRouter = () => {
           <>
             <Route path="/profile" element={<FormationUsers />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="*" element={<NotFound />} />
           </>
         )}
 
         
         {/* Fallback for not found pages */}
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
