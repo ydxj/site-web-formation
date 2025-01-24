@@ -65,7 +65,7 @@ function Menu() {
               <img src="logochu2.png" alt="Logo" />
             </div>
           </Link>
-          <h2 style={{color:'#007bff'}}>Bienvenue, {username}</h2>
+          <h6 style={{color:'#007bff',padding:'4px', marginLeft:"10px"}}>Bienvenue, {username}</h6>
  
           {role === "admin" && (
             <>

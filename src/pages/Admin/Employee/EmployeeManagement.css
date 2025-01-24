@@ -27,45 +27,79 @@
     border-radius: 4px;
 }
 
-.employees-table {
-    width: 100%;
-    border-collapse: collapse;
-}
 
-.employees-table th,
-.employees-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-}
 
-.employees-table th {
-    background: #f4f4f4;
-}
-
-.btn {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.btn-primary {
-    background: #007bff;
-    color: white;
-}
-
-.btn-warning {
-    background: #ffc107;
-    color: white;
-}
-
-.btn-danger {
-    background: #dc3545;
-    color: white;
-}
 
 .alert {
     color: red;
     margin-bottom: 15px;
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+
+
+button {
+    padding: 8px 18px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+   
+}
+
+button.btn-bleu {
+    background-color:dodgerblue;
+    color: #fff;
+}
+
+button.btn-danger {
+    background-color: red;
+    color: #fff;
+}
+
+
+@media screen and (max-width: 600px) {
+    th, td {
+        font-size: 14px;
+        padding: 8px;
+        
+    }
+
+   
+    button {
+        width: 100%;
+        display: block;
+        margin-right: 2%;
+        margin-bottom: 10px;
+    }
+
+
+    button:last-child {
+        margin-right: 0;
+    }
+
+    
+    table {
+        font-size: 14px;
+        
+    }
+
+    td[colspan="4"] {
+        font-size: 16px;
+       
+    }
 }

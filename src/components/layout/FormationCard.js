@@ -45,10 +45,13 @@ function FormationCard(){
 			</h2>
 			</div>
             {error && <div className="alert">{error}</div>}
-			<div>
+			<div className="container mt-5 ">
+                <div className="row">
                 {formations.map((data,index)=>
                     <Card items={data}/>
                 )}
+                </div>
+                
 			</div>
 			<div >
 				<Inscription/>

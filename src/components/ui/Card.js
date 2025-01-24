@@ -1,11 +1,13 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure you import Bootstrap
 import "../../components/ui/card.css";
 
 function Card(props) {
   const formation = props.items;
   const [message, setMessage] = useState('');
   const [EmpId, setEmpId] = useState('');
+
   useEffect(() => {
     const fetchUserRole = async () => {
       try {
@@ -21,8 +23,9 @@ function Card(props) {
         console.error("Error fetching user id:", error);
       }
     };
-    fetchUserRole()
+    fetchUserRole();
   }, []);
+
   const handleInscription = async () => {
     try {
       const employee_id = EmpId;
@@ -52,14 +55,20 @@ function Card(props) {
   };
 
   return (
-    <div className="card">
-      <h1>{formation.titre}</h1>
-      <p><strong>Durée :</strong> {formation.duree} jours</p>
-      <p><strong>Date :</strong> {formatDate(formation.date_debut)} - {formatDate(formation.date_fin)}</p>
-      <p><strong>Description :</strong> {formation.description}</p>
-      <button className="card-button" onClick={handleInscription}>S'inscrire</button>
-      {formation.filepath && <button className="card-button-green" onClick={handleDownload}>Download</button>}
-      {message && <p className="message">{message}</p>}
+    <div className="col-md-4 d-flex align-items-strtch mb-4"> {/* Added Bootstrap grid classes */}
+      <div className="card shadow-lg p-3">
+        <h1 className="card-title text-primary">{formation.titre}</h1>
+        <p><strong>Durée :</strong> {formation.duree} jours</p>
+        <p><strong>Date :</strong> {formatDate(formation.date_debut)} - {formatDate(formation.date_fin)}</p>
+        <p><strong>Description :</strong> {formation.description}</p>
+        <button className="btn btn-primary me-3 card-button" onClick={handleInscription}>S'inscrire</button>
+        {formation.filepath &&
+         <button className="btn btn-success " onClick={handleDownload}>
+          <i className='fa fa-download me-2'></i>
+          Download</button>}
+      {message && <p className="message alert alert-info text-center rounded">{message}</p>}
+
+      </div>
     </div>
   );
 }

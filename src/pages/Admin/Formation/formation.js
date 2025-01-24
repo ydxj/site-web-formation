@@ -189,16 +189,17 @@ function Formations() {
             </button>
           )}
         </form>
+      </div>
 
-        <table className="formations-table">
+      <table >
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Duration</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Description</th>
-              <th>Actions</th>
+              <th style={{textAlign:'center'}}>Title</th>
+              <th style={{textAlign:'center'}}>Duration</th>
+              <th style={{width:"150px",textAlign:'center'}}>Start Date</th>
+              <th style={{width:"150px",textAlign:'center'}}>End Date</th>
+              <th style={{textAlign:'center'}}>Description</th>
+              <th style={{textAlign:'center'}}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -211,15 +212,15 @@ function Formations() {
                   <td>{formatDate(formation.date_fin)}</td>
                   <td>{formation.description}</td>
                   <td>
-                    <button
+                    <button className='button1'
                       onClick={() => startEditing(formation)}
-                      className="btn btn-warning"
+                      
                     >
                       Edit
                     </button>
-                    <button
+                    <button className='button2'
                       onClick={() => deleteFormation(formation.id)}
-                      className="btn btn-danger"
+                      
                     >
                       Delete
                     </button>
@@ -228,14 +229,13 @@ function Formations() {
               ))
             ) : (
               <tr>
-                <td colSpan="6" className="text-center">
+                <td colSpan="6" >
                   No formations found.
                 </td>
               </tr>
             )}
           </tbody>
         </table>
-      </div>
     </div>
     
   );

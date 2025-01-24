@@ -30,7 +30,7 @@ const Home = () => {
     fetchUserRole();
   }, []);
   return (
-    <div className="container">
+    <div className="container1">
       {/* Header Section */}
       <div className="header-content">
         <a href="/">

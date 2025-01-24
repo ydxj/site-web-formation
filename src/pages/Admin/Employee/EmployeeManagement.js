@@ -174,6 +174,7 @@ function EmployeeManagement() {
             </button>
             )}
         </form>
+        </div>
 
         <table className="employees-table">
             <thead>
@@ -192,7 +193,7 @@ function EmployeeManagement() {
                     <td>{employee.email}</td>
                     <td>{employee.role}</td>
                     <td>
-                    <button onClick={() => startEditing(employee)} className="btn btn-warning">
+                    <button onClick={() => startEditing(employee)} className="btn btn-bleu">
                         Modifier
                     </button>
                     <button onClick={() => deleteEmployee(employee.id)} className="btn btn-danger">
@@ -210,7 +211,6 @@ function EmployeeManagement() {
             )}
             </tbody>
         </table>
-        </div>
     </div>
     
   );
