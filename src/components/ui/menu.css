@@ -1,79 +1,78 @@
-
 .menu-container {
-    position: fixed;
-    top: 0;
-    left: -250px; 
-    width: 250px;
-    height: 100%;
-    background-color: #343a40;
-    transition: all 0.3s ease; 
-    z-index: 100; 
-    overflow-y: auto; 
-  }
-  
-  .menu-container.show {
-    left: 0; 
-  }
-  
- 
-  .menu-button {
-    font-size: 30px;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    left: 10px;
-    z-index: 101; 
-    color: #343a40;
+  display: flex;
 
-     }
+  align-items: center;
+  background-color: rgb(22, 22, 86);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+}
+
+.menu-logo {
+  height: 80px;
+  width: 80px;
+}
+
+.menu {
+  display: flex;
+  gap: 10px;
+}
+
+.menu a {
+  padding: 2px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
   
- 
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 25px;
-    color: white;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  
-  .menu-icon {
-    padding: 20px;
-    text-decoration: none;
-    color: white;
+}
+
+.menu a:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+/* Button for small screens */
+.menu-button {
+  display: none;
+  border: none;
+  color: white;
+
+  font-size: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .menu-container {
     display: flex;
+   justify-content: space-between;
     align-items: center;
-    width: 100%;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    background-color: rgb(22, 22, 86);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
   }
-  
-  .menu-icon:hover {
-    background-color: #007bff;
-    color: white;
+  .menu {
+    display: none; /* Hide the menu */
+    flex-direction: column;
+    background-color: rgb(22, 22, 86);
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    
+    padding: 10px;
+    border-top: 1px solid #fff;
   }
-  
 
-  .menu-logo {
-    text-align: center;
-    margin-bottom: 20px;
+  .menu.active {
+    display: flex; /* Show the menu when active */
+  }
+
+  .menu-button {
+    display: block; /* Show the menu button */
   }
   
-  .menu-logo img {
-    width: 100px;
-    height: auto;
-  }
-  
- 
-  @media (max-width: 767px) {
-    .menu-container {
-      width: 250px;
-    }
-  
-    .menu-container.show {
-      width: 250px;
-    }
-  }
+}

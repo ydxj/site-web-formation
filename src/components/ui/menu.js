@@ -2,16 +2,15 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaTachometerAlt, FaBook, FaUsers, FaCogs, FaLifeRing, FaSignOutAlt } from "react-icons/fa";
 import { HiArchive } from "react-icons/hi";
+import { FiMenu, FiX } from "react-icons/fi"; // Icons for menu button
 import axios from "axios";
 import "../../components/ui/menu.css";
 
 function Menu() {
-  const [showMenu, setShowMenu] = useState(false);
   const [role, setRole] = useState("");
   const [username, setUsername] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false); // State for toggle menu
   const navigate = useNavigate();
-
-  const toggleMenu = () => setShowMenu((prev) => !prev);
 
   const handleLogout = async () => {
     try {
@@ -50,62 +49,56 @@ function Menu() {
     fetchUserRole();
   }, [navigate]);
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
-    <div>
-      <button className="menu-button" onClick={toggleMenu}>
-        ☰
-      </button>
-
-      <nav className={`menu-container ${showMenu ? "show" : ""}`}>
-        <div className="menu">
-          <button className="close-button" onClick={toggleMenu}>
-            ✖
-          </button>
-          <Link to="/">
-            <div className="menu-logo">
-              <img src="logochu2.png" alt="Logo" />
-            </div>
-          </Link>
-          <h6 style={{color:'#007bff',padding:'4px', marginLeft:"10px"}}>Bienvenue, {username}</h6>
- 
-          {role === "admin" && (
-            <>
-              <Link to="/Dashboard" className="menu-icon">
-                <FaTachometerAlt /> Tableau de bord
-              </Link>
-              <Link to="/Gestionformation" className="menu-icon">
-                <FaBook /> Gestion des formations
-              </Link>
-              <Link to="/AjouterEvenment" className="menu-icon">
-                <HiArchive /> Evenment
-              </Link>
-              <Link to="/Employee" className="menu-icon">
-                <FaUsers /> Gestion des employés
-              </Link>
-              <Link to="/profile" className="menu-icon">
-                <FaCogs /> Paramètres
-              </Link>
-              <Link to="/help-support" className="menu-icon">
-            <FaLifeRing /> Aide et support
-          </Link>
-            </>
-          )}
-
-          {role === "user" && (
-            <>
-              <Link to="/courses" className="menu-icon">
-                <FaBook /> Mes formations
-              </Link>
-              <Link to="/profile" className="menu-icon">
-                <FaCogs /> Mon profil
-              </Link>
-            </>
-          )}
-          <Link className="menu-icon" onClick={handleLogout}>
-            <FaSignOutAlt /> Se déconnecter
-          </Link>
-        </div>
-      </nav>
+    <div className="menu-container">
+      <Link to='/'>
+      <img src="logochu2.png" alt="Logo" className="menu-logo" />
+      </Link>
+     
+      <p className="menu-button" onClick={toggleMenu}>
+        {menuOpen ? <FiX /> : <FiMenu />}
+      </p>
+      <div className={`menu ${menuOpen ? "active" : ""}`}>
+        {role === "admin" && (
+          <>
+            <Link to="/Dashboard">
+              <FaTachometerAlt /> Tableau de bord
+            </Link>
+            <Link to="/Gestionformation">
+              <FaBook /> Gestion des formations
+            </Link>
+            <Link to="/AjouterEvenment">
+              <HiArchive /> Événement
+            </Link>
+            <Link to="/Employee">
+              <FaUsers /> Gestion des employés
+            </Link>
+            <Link to="/profile">
+              <FaCogs /> Paramètres
+            </Link>
+            <Link to="/help-support">
+              <FaLifeRing /> Ajouter Actualiter
+            </Link>
+          </>
+        )}
+        {role === "user" && (
+          <>
+            <Link to="/courses">
+              <FaBook /> Mes formations
+            </Link>
+            <Link to="/profile">
+              <FaCogs /> Mon profil
+            </Link>
+          </>
+        )}
+        <Link onClick={handleLogout}>
+          <FaSignOutAlt /> Se déconnecter
+        </Link>
+      </div>
     </div>
   );
 }
