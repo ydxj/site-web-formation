@@ -7,10 +7,14 @@ import { MdEmail } from "react-icons/md";
 import { FiPhone } from "react-icons/fi";
 import { GiBrain } from "react-icons/gi";
 import { Carousel } from "react-bootstrap";
+import EventsList from "../../components/layout/EventsList";
+import EventDetails from "../../components/layout/EventDetails";
 
 const Home = () => {
   const [username,setUsername] = useState("")
   const [events, setEvents] = useState([]);
+  const [newsList, setNewsList] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const [Role,setRole] = useState("")
   useEffect(() => {
       // Fetch events when the component loads
@@ -33,11 +37,26 @@ const Home = () => {
         console.error("Error fetching user role:", error);
       }
     };
+    const fetchNews = async () => {
+      try {
+        const response = await axios.get("http://localhost:8081/get-news");
+        setNewsList(response.data);
+        console.log(response.data)
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      }
+    };
 
     fetchUserRole();
+    fetchNews();
   }, []);
+
+
+  const handleEventClick = (event) => setSelectedEvent(event);
+  const handleBack = () => setSelectedEvent(null);
+
   return (
-    <div className="container">
+    <div className="container1">
       {/* Header Section */}
       <div className="header-content">
         <a href="/">
@@ -57,31 +76,39 @@ const Home = () => {
         </a>)}
       </div>
       <header className="header">
-        {events.length > 0 && (
-          <Carousel>
-            {events.map((event, index) => (
+      {events.length > 0 && (
+        <Carousel className="container">
+          {events
+            .map((event, index) => (
               <Carousel.Item key={index}>
-                <img
-                  className="d-block w-100"
-                  src={event.image} // Use the image URL from the API
-                  alt={`Slide ${index + 1}`}
-                  height={'350px'}
-                />
-                <Carousel.Caption style={{
-                      backgroundColor: "rgba(255, 255, 255, 0.8)", // Fond semi-transparent
-                      borderRadius: "10px", // Coins arrondis
-                      padding: "10px", // Espacement intérieur
-                      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Ombre pour un effet surélevé
-                    }}>
-                  <h5 style={{ color: 'black', fontWeight: 'bold', marginBottom: '5px' }}>{event.title}</h5>
-                  <p style={{ color: 'black', fontSize: '14px' }}>{event.description}</p>
+                <img className="d-block w-100" src={event.image} alt={`Slide ${index + 1}`} height="350px" />
+                <Carousel.Caption
+                  style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.8)", // Semi-transparent background
+                    borderRadius: "10px", // Rounded corners
+                    padding: "10px", // Padding
+                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Elevated shadow
+                  }}
+                >
+                  <h5
+                    style={{
+                      color: "black",
+                      fontWeight: "bold",
+                      marginBottom: "5px",
+                    }}
+                  >
+                    {event.title}
+                  </h5>
+                  <p style={{ color: "black", fontSize: "14px" }}>
+                    {event.description}
+                  </p>
                 </Carousel.Caption>
-
               </Carousel.Item>
             ))}
-          </Carousel>
-        )}
-      </header>
+        </Carousel>
+      )}
+    </header>
+
 
       {/* Main Section */}
       <main className="main">
@@ -108,6 +135,25 @@ const Home = () => {
             </div>
           </div>
         </section>
+        <div
+          className="container"
+          style={{
+            backgroundColor: "#f9f9f9", // Light background
+            padding: "20px", // Add space inside the container
+            borderRadius: "15px", // Rounded corners
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow
+            margin: "20px auto", // Center the container and add spacing
+            maxWidth: "100%", // Limit the width for better readability
+            textAlign: "center", // Center-align content
+            fontFamily: "'Arial', sans-serif", // Clean, modern font
+          }}
+        >
+          {selectedEvent ? (
+            <EventDetails event={selectedEvent} onBack={handleBack} />
+          ) : (
+            <EventsList events={newsList} onEventClick={handleEventClick} />
+          )}
+        </div>
 
         {/* Update Section */}
         <section className="update-section">
