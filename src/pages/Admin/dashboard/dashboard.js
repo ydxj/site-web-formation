@@ -67,29 +67,29 @@ function Dashboard() {
             <div className="dashboard-content">
                 <div className="dashboard-header">
                     <h1>Dashboard</h1>
-                    <p>Welcome to Attendance Management System</p>
+                    <p>Bienvenue dans le système de gestion des formation</p>
                 </div>
 
                 <div className="cards-container">
                     <div className="dashboard-card">
                         <FaIdCard className="icon" />
-                        <h2>TOTAL EMPLOYEES</h2>
+                        <h2>TOTAL DES EMPLOYÉS</h2>
                         <span>{employees.length}</span>
-                        <Link to="/Employee">More info <FaArrowRight /></Link>
+                        <Link to="/Employee">Plus d'info <FaArrowRight /></Link>
                     </div>
 
                     <div className="dashboard-card">
                         <FaUserCheck className="icon" />
                         <h2>Total Formation</h2>
                         <span>{Formations.length}</span>
-                        <Link to="/Gestionformation">More info <FaArrowRight /></Link>
+                        <Link to="/Gestionformation">Plus d'info <FaArrowRight /></Link>
                     </div>
 
                     <div className="dashboard-card">
                         <FaUserCheck className="icon" />
                         <h2>Formation en attent</h2>
                         <span>{Request.length}</span>
-                        <Link to="#">More info <FaArrowRight /></Link>
+                        <Link to="#">Plus d'info <FaArrowRight /></Link>
                     </div>
 
                     <div className="dashboard-card">
@@ -97,7 +97,7 @@ function Dashboard() {
                         <h2>Formation Passées</h2>
                         <span>{RequestDone.length}</span>
                         <a href="#" onClick={() => setShowFormationPassées(!showFormationPassées)}>
-                            More info <FaArrowRight />
+                            Plus d'info <FaArrowRight />
                         </a>
                     </div>
                 </div>

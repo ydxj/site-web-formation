@@ -129,7 +129,7 @@ function Formations() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="duree">Duration</label>
+            <label htmlFor="duree">Durée</label>
             <input
               id="duree"
               type="text"
@@ -140,7 +140,7 @@ function Formations() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="date_debut">Start Date</label>
+            <label htmlFor="date_debut">Date de début</label>
             <input
               id="date_debut"
               type="date"
@@ -151,7 +151,7 @@ function Formations() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="date_fin">End Date</label>
+            <label htmlFor="date_fin">Date de fin</label>
             <input
               id="date_fin"
               type="date"
@@ -171,7 +171,7 @@ function Formations() {
             ></textarea>
           </div>
           <div className="form-group">
-            <label htmlFor="file">Insert File</label>
+            <label htmlFor="file">Insérer un fichier</label>
             <input
               type="file"
               id="file"
@@ -185,7 +185,7 @@ function Formations() {
           </button>
           {editingFormation && (
             <button type="button" onClick={resetForm} className="btn btn-secondary">
-              Cancel
+              Annuler
             </button>
           )}
         </form>
@@ -195,9 +195,9 @@ function Formations() {
           <thead>
             <tr>
               <th style={{textAlign:'center'}}>Title</th>
-              <th style={{textAlign:'center'}}>Duration</th>
-              <th style={{width:"150px",textAlign:'center'}}>Start Date</th>
-              <th style={{width:"150px",textAlign:'center'}}>End Date</th>
+              <th style={{textAlign:'center'}}>Durée</th>
+              <th style={{width:"150px",textAlign:'center'}}>Date de début</th>
+              <th style={{width:"150px",textAlign:'center'}}>Date de fin</th>
               <th style={{textAlign:'center'}}>Description</th>
               <th style={{textAlign:'center'}}>Actions</th>
             </tr>
@@ -216,13 +216,13 @@ function Formations() {
                       onClick={() => startEditing(formation)}
                       
                     >
-                      Edit
+                      Modifier
                     </button>
                     <button className='button2'
                       onClick={() => deleteFormation(formation.id)}
                       
                     >
-                      Delete
+                      Supprimer
                     </button>
                   </td>
                 </tr>
@@ -230,7 +230,7 @@ function Formations() {
             ) : (
               <tr>
                 <td colSpan="6" >
-                  No formations found.
+                Aucune formation trouvée.
                 </td>
               </tr>
             )}

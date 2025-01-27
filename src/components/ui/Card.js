@@ -65,7 +65,7 @@ function Card(props) {
         {formation.filepath &&
          <button className="btn btn-success " onClick={handleDownload}>
           <i className='fa fa-download me-2'></i>
-          Download</button>}
+          Telecharger</button>}
       {message && <p className="message alert alert-info text-center rounded">{message}</p>}
 
       </div>

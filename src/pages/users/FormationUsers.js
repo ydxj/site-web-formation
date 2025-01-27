@@ -57,10 +57,10 @@ function FormationUsers() {
       <Menu />
       <div className="form-container">
         <div className="form-section">
-          <h2>Change Password</h2>
+          <h2>Changer le mot de passe</h2>
           {message && <p className="message">{message}</p>}
           <div className="form-group">
-            <label><strong>Current password:</strong></label>
+            <label><strong>Mot de passe actuel:</strong></label>
             <input
               type="password"
               value={currentPassword}
@@ -69,7 +69,7 @@ function FormationUsers() {
             />
           </div>
           <div className="form-group">
-            <label><strong>New password:</strong></label>
+            <label><strong>Nouveau mot de passe:</strong></label>
             <input
               type="password"
               value={newPassword}
@@ -78,7 +78,7 @@ function FormationUsers() {
             />
           </div>
           <div className="form-group">
-            <label><strong>Confirm new password:</strong></label>
+            <label><strong>Confirmer le nouveau mot de passe:</strong></label>
             <input
               type="password"
               value={confirmPassword}
@@ -87,7 +87,7 @@ function FormationUsers() {
             />
           </div>
           <button className="form-button" onClick={handleChangePassword}>
-            Change Password
+            Changer le mot de passe
           </button>
         </div>
       </div>
