@@ -6,11 +6,18 @@ import { FaBaby, FaRibbon } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { FiPhone } from "react-icons/fi";
 import { GiBrain } from "react-icons/gi";
+import { Carousel } from "react-bootstrap";
 
 const Home = () => {
   const [username,setUsername] = useState("")
+  const [events, setEvents] = useState([]);
   const [Role,setRole] = useState("")
   useEffect(() => {
+      // Fetch events when the component loads
+    axios
+      .get("http://localhost:8081/events")
+      .then((response) => setEvents(response.data))
+      .catch((error) => console.error("Error fetching events:", error));
     const fetchUserRole = async () => {
       try {
         const response = await axios.get("http://localhost:8081/menu", {
@@ -30,7 +37,7 @@ const Home = () => {
     fetchUserRole();
   }, []);
   return (
-    <div className="container1">
+    <div className="container">
       {/* Header Section */}
       <div className="header-content">
         <a href="/">
@@ -50,16 +57,30 @@ const Home = () => {
         </a>)}
       </div>
       <header className="header">
-        <div className="hero">
-          <h1 className="hero-title">
-            Des compétences d'aujourd'hui qui ont de l'avenir
-          </h1>
-          <img
-            src="./assets/images/nurse.png"
-            alt="Nurse"
-            className="hero-image"
-          />
-        </div>
+        {events.length > 0 && (
+          <Carousel>
+            {events.map((event, index) => (
+              <Carousel.Item key={index}>
+                <img
+                  className="d-block w-100"
+                  src={event.image} // Use the image URL from the API
+                  alt={`Slide ${index + 1}`}
+                  height={'350px'}
+                />
+                <Carousel.Caption style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.8)", // Fond semi-transparent
+                      borderRadius: "10px", // Coins arrondis
+                      padding: "10px", // Espacement intérieur
+                      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Ombre pour un effet surélevé
+                    }}>
+                  <h5 style={{ color: 'black', fontWeight: 'bold', marginBottom: '5px' }}>{event.title}</h5>
+                  <p style={{ color: 'black', fontSize: '14px' }}>{event.description}</p>
+                </Carousel.Caption>
+
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        )}
       </header>
 
       {/* Main Section */}

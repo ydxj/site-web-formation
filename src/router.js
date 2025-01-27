@@ -12,6 +12,7 @@ import NotFound from "./pages/404 Page/notFound";
 // import FormationCard from "./components/layout/FormationCard";
 import FormationUsers from "./pages/users/FormationUsers";
 import Dashboard from "./pages/Admin/dashboard/dashboard";
+import Evenment from "./pages/Admin/AjouterEvenment/AddEvenment";
 
 const ConfigueRouter = () => {
   const [role, setRole] = useState(null); // Initialize as `null` to distinguish between loading and no role
@@ -49,6 +50,7 @@ const ConfigueRouter = () => {
           <>
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/Employee" element={<EmployeeManagement />} />
+            <Route path="/AjouterEvenment" element={<Evenment />} />
             <Route path="/Gestionformation" element={<Formations />} />
             <Route path="/profile" element={<FormationUsers />} />
             <Route path="*" element={<NotFound />} />

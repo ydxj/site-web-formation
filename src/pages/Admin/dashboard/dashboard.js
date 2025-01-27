@@ -73,7 +73,7 @@ function Dashboard() {
                 <div className="cards-container">
                     <div className="dashboard-card">
                         <FaIdCard className="icon" />
-                        <h2>TOTAL DES EMPLOYÉS</h2>
+                        <h2>TOTAL EMPLOYÉS</h2>
                         <span>{employees.length}</span>
                         <Link to="/Employee">Plus d'info <FaArrowRight /></Link>
                     </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaTachometerAlt, FaBook, FaUsers, FaCogs, FaLifeRing, FaSignOutAlt } from "react-icons/fa";
+import { HiArchive } from "react-icons/hi";
 import axios from "axios";
 import "../../components/ui/menu.css";
 
@@ -74,6 +75,9 @@ function Menu() {
               </Link>
               <Link to="/Gestionformation" className="menu-icon">
                 <FaBook /> Gestion des formations
+              </Link>
+              <Link to="/AjouterEvenment" className="menu-icon">
+                <HiArchive /> Evenment
               </Link>
               <Link to="/Employee" className="menu-icon">
                 <FaUsers /> Gestion des employés
