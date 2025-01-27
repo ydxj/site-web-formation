@@ -8,6 +8,7 @@ const Evenment = () => {
     title: "",
     description: "",
     image: null,
+    Type:"Carousel",
   });
   const [editEvent, setEditEvent] = useState(null); // Event to edit
 
@@ -35,6 +36,7 @@ const Evenment = () => {
     formData.append("title", form.title);
     formData.append("description", form.description);
     formData.append("image", form.image); // Add the image file
+    formData.append("Type", form.Type); 
 
     if (editEvent) {
       // If editing an event, update it
@@ -44,7 +46,7 @@ const Evenment = () => {
         })
         .then(() => {
           setEditEvent(null);
-          setForm({ title: "", description: "", image: null });
+          setForm({ title: "", description: "", image: null, Type:"Carousel" });
           return axios.get("http://localhost:8081/events"); // Fetch updated events
         })
         .then((response) => setEvents(response.data))
@@ -125,6 +127,13 @@ const Evenment = () => {
                 accept="image/*"
                 onChange={handleFileChange}
             />
+            </div>
+            <div className="mb-3">
+            <label htmlFor="title" className="form-label">Type</label>
+            <select name="Type" className="form-control" onChange={handleInputChange}>
+              <option value="Carousel">Carousel</option>
+              <option value="Evenment">Evenment</option>
+            </select>
             </div>
             <button type="submit" className="btn btn-primary">
             {editEvent ? "Modifier" : "Ajouter"}
