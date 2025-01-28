@@ -9,6 +9,20 @@ body, html {
     width: 100%;
     font-family: 'Poppins', sans-serif;
 }
+.auth-container {
+    background-image: url('./img.jpg');  /* Ensure the image is in the public folder */
+    background-size: cover;              /* Makes sure the image covers the entire background */
+    background-position: center center;  /* Centers the image */
+    background-repeat: no-repeat;        /* Ensures the image doesn't repeat */
+    background-attachment: fixed;        /* Keeps the background fixed while scrolling */
+    
+    /* Add a blur effect */
+    /*filter: blur(8px);  /* Adjust the blur amount as needed */
+    /*-webkit-filter: blur(8px);  /* For Safari support */
+    /*height: 100vh;  /* Make sure the body takes up the full viewport height */
+    /*margin: 0;  /* Removes default margin */
+}
+
 
 .auth-container {
     display: flex;
@@ -17,8 +31,8 @@ body, html {
     justify-content: center;
     height: 100vh;
     gap: 50px;
-    background-color: white;
-}
+    /*background-color: white;
+*/}
 
 .auth-logo {
     width: 300px;

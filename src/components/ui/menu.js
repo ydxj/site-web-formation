@@ -80,7 +80,7 @@ function Menu() {
             <Link to="/profile">
               <FaCogs /> Paramètres
             </Link>
-            <Link to="/help-support">
+            <Link to="/AjouterActualiter">
               <FaLifeRing /> Ajouter Actualiter
             </Link>
           </>

@@ -73,7 +73,7 @@ function Autentification() {
         <div className="auth-container">
             <div className="auth-logo">
                 <Link to="/">
-                    <img src="logochu.jpg" alt="Logo CHU" />
+                    <img src="logochu2.png" alt="Logo CHU" />
                 </Link>
             </div>
             <div className="auth-form">

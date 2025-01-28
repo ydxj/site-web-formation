@@ -9,19 +9,44 @@ import axios from 'axios';
 
 function Dashboard() {
     const [employees, setEmployees] = useState([]);
+    const [greetingMessage, setgreetingMessage] = useState("");
     const [Formations, setFormations] = useState([]);
     const [Request, setRequests] = useState([]);
     const [RequestDone, setRequestDone] = useState([]);
+    const [username,setUsername] = useState("")
     const [Erreur, setError] = useState('');
     const [showFormationPassées, setShowFormationPassées] = useState(false);
-
+    const currentHour = new Date().getHours(); // Get the current hour
+    const messagere = ()=>{
+        if (currentHour < 12) {
+        setgreetingMessage("Bonjour") // Good Morning in French
+        } else {
+            setgreetingMessage("Bonsoir") // Good Evening in French
+        }
+    }
+    
     useEffect(() => {
+        messagere();
         fetchEmployees();
         fetchFormations();
         fetchRequests();
         fetchRequestDone();
+        fetchUserRole();
     }, []);
-
+    const fetchUserRole = async () => {
+        try {
+          const response = await axios.get("http://localhost:8081/menu", {
+            withCredentials: true,
+          });
+          if (response.data.valid) {
+            setUsername(response.data.username);
+          } else {
+            console.log("Erreur")
+          }
+        } catch (error) {
+          console.error("Error fetching user role:", error);
+        }
+    };
     const fetchFormations = async () => {
         try {
             const response = await axios.get('http://localhost:8081/formations');
@@ -66,7 +91,7 @@ function Dashboard() {
 
             <div className="dashboard-content">
                 <div className="dashboard-header">
-                    <h1>Dashboard</h1>
+                    <h1>{greetingMessage} {username}</h1>
                     <p>Bienvenue dans le système de gestion des formation</p>
                 </div>
 
