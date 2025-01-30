@@ -43,26 +43,28 @@ function Autentification() {
             try {
                 axios.defaults.withCredentials = true;
                 const response = await axios.post('http://localhost:8081/login', {
-                    withCredentials : true,
                     email,
                     password,
+                }, {
+                    withCredentials: true,
                 });
-                console.log('hado mn login'+response);
+                // console.log('Response from server:', response.data);
                 if (response.data.Login) {
                     console.log('Authentification réussie!');
-                    setTimeout(function() {
+                    setTimeout(() => {
                         if(response.data.role === 'admin'){
                             navigate('/Dashboard')
                         }else{
                             navigate('/courses');
                         }
-                    }, 3000);   
+                    }, 3000);
                 } else {
-                    setErrorAuthentication('Email ou mot de passe incorrect.');
+                    setErrorAuthentication(response.data.message || 'Email ou mot de passe incorrect.');
                 }
             } catch (error) {
                 console.error('Erreur lors de la connexion:', error);
-                setErrorAuthentication('Erreur de connexion au serveur.');
+                const errorMessage = error.response?.data?.message || 'Erreur de connexion au serveur.';
+                setErrorAuthentication(errorMessage);
             } finally {
                 setLoading(false);
             }
