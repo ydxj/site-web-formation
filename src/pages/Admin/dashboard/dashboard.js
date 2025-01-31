@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaIdCard, FaArrowRight, FaUserCheck, FaExclamationTriangle } from 'react-icons/fa';
+import { FaIdCard, FaArrowRight, FaUserCheck, FaExclamationTriangle ,FaTimes} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './Dashboard.css';
 import Menu from '../../../components/ui/menu';
@@ -16,6 +16,7 @@ function Dashboard() {
     const [username,setUsername] = useState("")
     const [Erreur, setError] = useState('');
     const [showFormationPassées, setShowFormationPassées] = useState(false);
+    const [showRequests, setShowRequests] = useState(false);
     const currentHour = new Date().getHours(); // Get the current hour
     const messagere = ()=>{
         if (currentHour < 12) {
@@ -85,6 +86,16 @@ function Dashboard() {
         }
     };
 
+    useEffect(() => {
+        if (showRequests) {
+            document.getElementById("formation-requests")?.scrollIntoView({ behavior: "smooth" });
+        }
+
+        if (showFormationPassées) {
+            document.getElementById("formation-passees")?.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [showRequests,showFormationPassées]);
+
     return (
         <div className="dashboard-layout">
             <Menu className="sidebar" />
@@ -111,25 +122,32 @@ function Dashboard() {
                     </div>
 
                     <div className="dashboard-card">
-                        <FaUserCheck className="icon" />
-                        <h2>Formation en attent</h2>
-                        <span>{Request.length}</span>
-                        <Link to="#">Plus d'info <FaArrowRight /></Link>
-                    </div>
+                <FaUserCheck className="icon" />
+                <h2>Formation en attente</h2>
+                <span>{Request.length}</span>
+                <a href="#" onClick={() => setShowRequests(!showRequests)}>
+                    {showRequests ? "Masquer" : "Plus d'info"} <FaArrowRight />
+                </a>
+            </div>
 
-                    <div className="dashboard-card">
-                        <FaExclamationTriangle className="icon" />
-                        <h2>Formation Passées</h2>
-                        <span>{RequestDone.length}</span>
-                        <a href="#" onClick={() => setShowFormationPassées(!showFormationPassées)}>
-                            Plus d'info <FaArrowRight />
-                        </a>
-                    </div>
+
+            <div className="dashboard-card">
+                <FaExclamationTriangle className="icon" />
+                <h2>Formation Passées</h2>
+                <span>{RequestDone.length}</span>
+                <a href="#" onClick={() => setShowFormationPassées(!showFormationPassées)}>
+                    {showFormationPassées ? "Masquer" : "Plus d'info"} <FaArrowRight />
+                </a>
+            </div>
                 </div>
 
+                {showRequests && (
                 <div className="formation-requests">
                     <FormationRequest />
                 </div>
+                )}
+
+               
 
                 {showFormationPassées && (
                     <div className="formation-passees">

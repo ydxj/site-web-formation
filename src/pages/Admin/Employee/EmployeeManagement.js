@@ -189,17 +189,17 @@ function EmployeeManagement() {
             {employees.length > 0 ? (
                 employees.map((employee) => (
                 <tr key={employee.id}>
-                    <td>{employee.fullname}</td>
-                    <td>{employee.email}</td>
-                    <td>{employee.role}</td>
-                    <td>
+                   <td data-label="Nom">{employee.fullname}</td>
+                  <td data-label="Email">{employee.email}</td>
+                   <td data-label="Rôle">{employee.role}</td>
+                  <td>
                     <button onClick={() => startEditing(employee)} className="btn btn-bleu">
-                        Modifier
+                      Modifier
                     </button>
                     <button onClick={() => deleteEmployee(employee.id)} className="btn btn-danger">
-                        Supprimer
+                      Supprimer
                     </button>
-                    </td>
+                  </td>
                 </tr>
                 ))
             ) : (

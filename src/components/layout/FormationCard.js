@@ -93,7 +93,6 @@ function FormationCard(){
                         ))}
                     </div>
                 </div>
-                <h2>Autre Formation</h2>
                 <div className="container mt-5">
                     <div className="row">
                         {formations
@@ -107,9 +106,7 @@ function FormationCard(){
 
                 
 			</div>
-			<div >
-				<Inscription/>
-			</div>
+			
 		
         </div>
     )

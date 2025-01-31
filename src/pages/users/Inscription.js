@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Inscription.css"; 
+import Menu from "../../components/ui/menu";
 // import { Link } from 'react-router-dom';
 function Inscription() {
   const [nom, setnom] = useState("");
@@ -24,6 +25,11 @@ function Inscription() {
   }
 
   return (
+    <div>
+       <div>
+        <Menu/>
+      </div>
+
     <div className="inscription-container">
       <h2>Formulaire d'inscription</h2>
       <div className="form-group">
@@ -58,6 +64,7 @@ function Inscription() {
       </div>
 
       <button className="submit-button">S'inscrire</button>
+    </div>
     </div>
   );
 }

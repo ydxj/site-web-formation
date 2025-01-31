@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaTachometerAlt, FaBook, FaUsers, FaCogs, FaLifeRing, FaSignOutAlt } from "react-icons/fa";
+import { FaTachometerAlt, FaBook, FaUsers, FaCogs, FaLifeRing, FaSignOutAlt,FaChalkboardTeacher ,FaUserPlus} from "react-icons/fa";
 import { HiArchive } from "react-icons/hi";
 import { FiMenu, FiX } from "react-icons/fi"; // Icons for menu button
 import axios from "axios";
@@ -92,6 +92,14 @@ function Menu() {
             </Link>
             <Link to="/profile">
               <FaCogs /> Mon profil
+            </Link>
+
+            <Link to="/formation-demande">
+              <FaChalkboardTeacher /> Formation Demande
+            </Link>
+
+            <Link to="/inscription">
+              <FaUserPlus /> Inscription Formation
             </Link>
           </>
         )}

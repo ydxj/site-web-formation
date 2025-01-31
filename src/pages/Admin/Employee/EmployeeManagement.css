@@ -73,33 +73,41 @@ button.btn-danger {
 
 
 @media screen and (max-width: 600px) {
-    th, td {
-        font-size: 14px;
-        padding: 8px;
-        
+    /* Make the table horizontally scrollable */
+    .employees-table {
+        overflow-x: auto;
+        display: block;
+        white-space: nowrap;
     }
 
-   
+    th, td {
+        font-size: 14px;  /* Smaller font for mobile */
+        padding: 8px;  /* Adjust padding */
+    }
+
+    /* Adjust buttons to fit better on small screens */
     button {
+        width: 45%;
+        padding: 10px 20px;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    button:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Make the form inputs fit better on small screens */
+    .employee-form input, .employee-form select {
         width: 100%;
-        display: block;
-        margin-right: 2%;
+        padding: 10px;
+        font-size: 14px;
         margin-bottom: 10px;
     }
 
-
-    button:last-child {
-        margin-right: 0;
-    }
-
-    
-    table {
+    /* Adjust the alert message for smaller screens */
+    .alert {
         font-size: 14px;
-        
-    }
-
-    td[colspan="4"] {
-        font-size: 16px;
-       
+        margin-bottom: 10px;
     }
 }

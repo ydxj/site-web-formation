@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Form } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Courses from "./pages/Courses/Courses";
@@ -14,6 +14,8 @@ import FormationUsers from "./pages/users/FormationUsers";
 import Dashboard from "./pages/Admin/dashboard/dashboard";
 import Evenment from "./pages/Admin/AjouterEvenment/AddEvenment";
 import AjouterActualite from "./pages/Admin/AjouterActualiter/Actualiter";
+import Inscription from "./pages/users/Inscription";
+import FormationDemande from "./pages/users/formationdemande";
 
 const ConfigueRouter = () => {
   const [role, setRole] = useState(null); // Initialize as `null` to distinguish between loading and no role
@@ -64,6 +66,8 @@ const ConfigueRouter = () => {
           <>
             <Route path="/profile" element={<FormationUsers />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="/inscription" element={<Inscription />} />
+            <Route path="/formation-demande" element={<FormationDemande />} />
             <Route path="*" element={<NotFound />} />
           </>
         )}
