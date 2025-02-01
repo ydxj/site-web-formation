@@ -42,23 +42,25 @@
 
 /* Style pour les boutons */
 .status-button {
-    padding: 8px 16px;
+    padding: 8px 1px;
     border: none;
     cursor: pointer;
     color: white;
     background-color: #4CAF50;
     border-radius: 4px;
     font-size: 14px;
+    width: 100% !important ;
 }
 
 .status-button1 {
-    padding: 8px 16px;
+    padding: 8px 1px;
     border: none;
     cursor: pointer;
     color: white;
     background-color: red;
     border-radius: 4px;
     font-size: 14px;
+    width: 100% !important ;
 }
 
 .status-button:hover {

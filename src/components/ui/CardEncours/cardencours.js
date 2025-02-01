@@ -12,7 +12,6 @@ function CardEncours(props){
             <p><strong>Durée :</strong> {formation.duree} jours</p>
             <p><strong>Date :</strong> {formatDate(formation.date_debut)}</p>
             <p><strong>Description :</strong> {formation.description}</p>
-            
             {formation.status === "validated" && (
                 <button className="card-button" style={{ backgroundColor: 'rgb(36, 150, 50)', width: "100%" }}>
                     Accepter

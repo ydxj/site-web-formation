@@ -123,11 +123,13 @@ th {
 
 
 .button1{
-  width: 100%;
+  width: 100% !important;
+  padding: 8px 1px;
 }
 
 .button2{
-  width: 110%;
+  width: 100%  !important;
+  padding: 8PX 0px;
 }
 
   td {
