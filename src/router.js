@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Routes, Route, Form } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Courses from "./pages/Courses/Courses";
@@ -19,6 +19,7 @@ import FormationDemande from "./pages/users/formationdemande";
 
 const ConfigueRouter = () => {
   const [role, setRole] = useState(null); // Initialize as `null` to distinguish between loading and no role
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -29,16 +30,39 @@ const ConfigueRouter = () => {
         if (response.data.valid) {
           setRole(response.data.role);
         } else {
-          
+          setRole("guest");
         }
       } catch (error) {
         console.error("Error fetching user role:", error);
         setRole("guest");
+      } finally {
+        setLoading(false);
       }
     };
     fetchUserRole();
   }, []);
+  const handleLogin = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get("http://localhost:8081/menu", {
+        withCredentials: true,
+      });
+      if (response.data.valid) {
+        setRole(response.data.role);
+      } else {
+        setRole("guest");
+      }
+    } catch (error) {
+      console.error("Error updating role after login:", error);
+      setRole("guest");
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  if (loading) {
+    return <div className="loading-screen">Loading...</div>;
+  }
   return (
     <Router>
       <Routes>
@@ -46,7 +70,7 @@ const ConfigueRouter = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
 
         {/* Admin-Specific Routes */}
         {role === "admin" && (
@@ -74,6 +98,7 @@ const ConfigueRouter = () => {
 
         
         {/* Fallback for not found pages */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

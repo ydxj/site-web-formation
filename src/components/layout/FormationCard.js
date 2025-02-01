@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Inscription from "../../pages/users/Inscription"
 import Card from "../ui/Card"
-import CardEncours from '../ui/CardEncours/cardencours';
-
 function FormationCard(){
 
     const [formations, setFormations] = useState([]);
@@ -59,9 +56,6 @@ function FormationCard(){
             setError('Impossible de récupérer les formations.');
         }
     };
-    
-    console.log("formations:", formations);
-    console.log("formationsR:", formationsR);
 
 
     return(
@@ -85,14 +79,6 @@ function FormationCard(){
                 Gestion de formations-CHU
                 </h2>
                 {error && <div className="alert">{error}</div>}
-                <h1>Formation demande</h1>
-                <div className="container mt-5">
-                    <div className="row">
-                        {formationsR.map((data, index) => (
-                            <CardEncours key={index} items={data} />
-                        ))}
-                    </div>
-                </div>
                 <div className="container mt-5">
                     <div className="row">
                         {formations
