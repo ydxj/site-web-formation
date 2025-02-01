@@ -79,6 +79,9 @@ margin-bottom: 10px;
 
 /* Update section styles */
 .update-section {
+flex-direction: column;
+text-align: center;
+max-height: 100%;
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -104,6 +107,7 @@ cursor: pointer;
 }
 
 .video {
+margin-top: 20px;
 flex: 1;
 height: 200px;
 }
@@ -175,6 +179,14 @@ border-radius: 8px;
 
 /* Media Queries */
 @media (max-width: 768px) {
+.queryM{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.partsM{
+    width: 100% !important;
+}
 .hero {
     flex-direction: column;
 }

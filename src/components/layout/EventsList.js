@@ -56,7 +56,7 @@ const EventsList = ({ events, onEventClick }) => {
                       ? "bg-info text-white"
                       : event.status === "En cours"
                       ? "bg-warning text-dark"
-                      : "bg-danger"
+                      : "bg-success"
                   }`}
                   style={{
                     fontSize: "0.85rem",

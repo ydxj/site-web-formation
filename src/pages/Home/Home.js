@@ -112,75 +112,55 @@ const Home = () => {
 
       {/* Main Section */}
       <main className="main">
-        {/* Introduction Section */}
-        <section className="intro-section">
-          <h2>Savoir. Faire. Savoir-faire.</h2>
-          <p>Avec CHU E-Learning, découvrez une nouvelle façon d'apprendre.</p>
-          <div className="features">
-            <div className="feature">
-              <img
-                src="./assets/images/learning-icon.png"
-                alt="Learn Anywhere"
-                className="feature-icon"
-              />
-              <p><strong>Apprenez où que vous soyez</strong></p>
-            </div>
-            <div className="feature">
-              <img
-                src="./assets/images/mentor-icon.png"
-                alt="Mentor Support"
-                className="feature-icon"
-              />
-              <p><strong>Un mentor pour vous accompagner</strong></p>
-            </div>
-          </div>
-        </section>
-        <div
-          className="container"
-          style={{
-            backgroundColor: "#f9f9f9", // Light background
-            padding: "20px", // Add space inside the container
-            borderRadius: "15px", // Rounded corners
-            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow
-            margin: "20px auto", // Center the container and add spacing
-            maxWidth: "100%", // Limit the width for better readability
-            textAlign: "center", // Center-align content
-            fontFamily: "'Arial', sans-serif", // Clean, modern font
-          }}
-        >
-          {selectedEvent ? (
-            <EventDetails event={selectedEvent} onBack={handleBack} />
-          ) : (
-            <EventsList events={newsList} onEventClick={handleEventClick} />
-          )}
-        </div>
-
         {/* Update Section */}
-        <section className="update-section">
-          <div className="update-text">
-            <h3>
-              Restez à Jour sur les Nouvelles Maladies : Une Formation Essentielle
-              pour les Médecins
-            </h3>
-            <p>
-              Mettez à jour vos connaissances, développez de nouvelles
-              compétences, obtenez notre formation en ligne, dédiée aux
-              médecins et au personnel hospitalier, vous offre les outils
-              nécessaires pour comprendre et anticiper ces nouveaux défis.
-            </p>
-            <button className="button">Démarrer mon inscription</button>
+        <div className="row queryM ">
+          <div className="col-6 partsM">
+            <div className="col-12">
+              <div
+                className="mb-5"
+                style={{
+                  backgroundColor: "#f9f9f9", // Light background
+                  padding: "20px", // Add space inside the container
+                  borderRadius: "15px", // Rounded corners
+                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow
+                  maxWidth: "100%", // Limit the width for better readability
+                  textAlign: "center", // Center-align content
+                  fontFamily: "'Arial', sans-serif", // Clean, modern font
+                }}
+              >
+                {selectedEvent ? (
+                  <EventDetails event={selectedEvent} onBack={handleBack} />
+                ) : (
+                  <EventsList events={newsList} onEventClick={handleEventClick} />
+                )}
+              </div>
+            </div>
           </div>
-          <div>
-            <iframe
-              className="video"
-              src="https://www.youtube.com/embed/zw-2OGb8m6A"
-              title="Le CHU en Chiffres - centre hospitalier universitaire"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              /*allowFullScreen*/
-            ></iframe>
+          <div className="row col-6 partsM">
+            <div className="col-12">
+              <section className="update-section">
+                <div className="update-text">
+                  <h3>
+                    Restez à Jour sur les Nouvelles Maladies : Une Formation Essentielle pour les Médecins
+                  </h3>
+                  <p>
+                    Mettez à jour vos connaissances, développez de nouvelles compétences, obtenez notre formation en ligne, dédiée aux médecins et au personnel hospitalier, vous offre les outils nécessaires pour comprendre et anticiper ces nouveaux défis.
+                  </p>
+                  <button className="button">Démarrer mon inscription</button>
+                </div>
+                <div>
+                  <iframe
+                    className="video"
+                    src="https://www.youtube.com/embed/zw-2OGb8m6A"
+                    title="Le CHU en Chiffres - centre hospitalier universitaire"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  ></iframe>
+                </div>
+              </section>
+            </div>
           </div>
-        </section>
+        </div>        
 
         {/* Hospitals Section */}
         <section className="hospitals-section">
