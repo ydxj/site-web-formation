@@ -16,6 +16,7 @@ import Evenment from "./pages/Admin/AjouterEvenment/AddEvenment";
 import AjouterActualite from "./pages/Admin/AjouterActualiter/Actualiter";
 import Inscription from "./pages/users/Inscription";
 import FormationDemande from "./pages/users/formationdemande";
+import DashboardU from "./pages/users/dashboardusers/dashboardU";
 
 const ConfigueRouter = () => {
   const [role, setRole] = useState(null); // Initialize as `null` to distinguish between loading and no role
@@ -89,10 +90,12 @@ const ConfigueRouter = () => {
         {role === "user" && (
           <>
             <Route path="/profile" element={<FormationUsers />} />
-            <Route path="/courses" element={<Courses />} />
+            <Route path="/courses" element={<DashboardU />} />
             <Route path="/inscription" element={<Inscription />} />
             <Route path="/formation-demande" element={<FormationDemande />} />
+            <Route path="/FormationDisponible" element={<Courses />} />
             <Route path="*" element={<NotFound />} />
+            
           </>
         )}
 
