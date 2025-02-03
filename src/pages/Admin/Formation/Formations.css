@@ -169,3 +169,8 @@ tbody{
 background-color: rgb(234, 232, 229);
 font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+.Button-userName{
+  background-color: rgb(97, 99, 220);
+  border-radius: 50%;
+  
+}
