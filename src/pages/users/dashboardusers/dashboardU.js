@@ -7,16 +7,13 @@ import Menu from '../../../components/ui/menu';
 import axios from 'axios';
 
 function DashboardU() {
-    const [employees, setEmployees] = useState([]);
     const [greetingMessage, setgreetingMessage] = useState("");
     const [Formations, setFormations] = useState([]);
-    const [Request, setRequests] = useState([]);
-    const [RequestDone, setRequestDone] = useState([]);
     const [username,setUsername] = useState("")
     const [Erreur, setError] = useState('');
-    const [showFormationPassées, setShowFormationPassées] = useState(false);
-    const [showRequests, setShowRequests] = useState(false);
     const currentHour = new Date().getHours(); // Get the current hour
+    const [formationsR, setFormationsR] = useState([]);
+    const [ID, setID] = useState('');
     const messagere = ()=>{
         if (currentHour < 12) {
         setgreetingMessage("Bonjour") // Good Morning in French
@@ -27,12 +24,46 @@ function DashboardU() {
     
     useEffect(() => {
         messagere();
-        fetchEmployees();
-        fetchFormations();
-        fetchRequests();
-        fetchRequestDone();
         fetchUserRole();
+        fetchFormations();
+        fetchID();
     }, []);
+    useEffect(() => {
+        if (ID) {
+            fetchFormationsR();
+        }
+    }, [ID]);
+    const fetchID = async () => {
+        try {
+            const response = await axios.get("http://localhost:8081/menu", {
+                withCredentials: true,
+            });
+            if (response.data.valid) {
+                console.log(response.data);
+                setID(response.data.id);
+            }
+        } catch (error) {
+            console.error("Error fetching user role:", error);
+        }
+    };
+    const fetchFormationsR = async () => {
+        if (!ID) {
+            console.error("ID de l'employé manquant.");
+            setError("L'ID de l'employé est requis.");
+            return;
+        }
+        try {
+            const response = await axios.get('http://localhost:8081/formationR', {
+                params: { userId: ID }
+            });
+            console.log("Réponse reçue :", response.data);
+            setFormationsR(response.data);
+        } catch (err) {
+            console.error('Erreur lors de la récupération des formations:', err);
+            setError('Impossible de récupérer les formations.');
+        }
+    };
+    
     const fetchUserRole = async () => {
         try {
           const response = await axios.get("http://localhost:8081/menu", {
@@ -47,6 +78,7 @@ function DashboardU() {
           console.error("Error fetching user role:", error);
         }
     };
+    
     const fetchFormations = async () => {
         try {
             const response = await axios.get('http://localhost:8081/formations');
@@ -56,45 +88,6 @@ function DashboardU() {
             setError('Unable to fetch formations.');
         }
     };
-
-    const fetchEmployees = async () => {
-        try {
-            const response = await axios.get('http://localhost:8081/employees');
-            setEmployees(response.data);
-        } catch (err) {
-            console.error('Erreur lors de la récupération des employés:', err);
-            setError('Impossible de récupérer les employés.');
-        }
-    };
-
-    const fetchRequests = async () => {
-        try {
-            const response = await axios.get('http://localhost:8081/formation-requests');
-            setRequests(response.data);
-        } catch (err) {
-            console.error('Error fetching requests:', err);
-        }
-    };
-
-    const fetchRequestDone = async () => {
-        try {
-            const response = await axios.get('http://localhost:8081/formation-requestsdone');
-            setRequestDone(response.data);
-        } catch (err) {
-            console.error('Error fetching requests:', err);
-        }
-    };
-
-    useEffect(() => {
-        if (showRequests) {
-            document.getElementById("formation-requests")?.scrollIntoView({ behavior: "smooth" });
-        }
-
-        if (showFormationPassées) {
-            document.getElementById("formation-passees")?.scrollIntoView({ behavior: "smooth" });
-        }
-    }, [showRequests,showFormationPassées]);
-
     return (
         <div className="dashboard-layout">
             <Menu className="sidebar" />
@@ -109,7 +102,7 @@ function DashboardU() {
                     <div className="dashboard-card">
                         <FaIdCard className="icon" />
                         <h2>Formation demande</h2>
-                        <span>{employees.length}</span>
+                        <span>{formationsR.length}</span>
                         <Link to="/formation-demande">Plus d'info <FaArrowRight /></Link>
                     </div>
 
@@ -123,9 +116,10 @@ function DashboardU() {
                     <div className="dashboard-card">
                 <FaUserCheck className="icon" />
                 <h2>Inscription Formation</h2>
-                <span>{Request.length}</span>
-                <a href="/inscription" onClick={() => setShowRequests(!showRequests)}>
-                    {showRequests ? "Masquer" : "Plus d'info"} <FaArrowRight />
+                <span>0</span>
+                {/* <span>{{formationsR.length}}</span> */}
+                <a href="/inscription">
+                En cours de developper <FaArrowRight />
                 </a>
             </div>
 
