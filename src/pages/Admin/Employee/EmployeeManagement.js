@@ -5,11 +5,13 @@ import Menu from '../../../components/ui/menu';
 
 function EmployeeManagement() {
   const [employees, setEmployees] = useState([]);
+  const [filteredEmployees, setFilteredEmployees] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [newEmployee, setNewEmployee] = useState({
     name: '',
     email: '',
     role: 'user',
-    service:'',
+    service: '',
   });
   const [editingEmployee, setEditingEmployee] = useState(null);
   const [error, setError] = useState('');
@@ -17,6 +19,14 @@ function EmployeeManagement() {
   useEffect(() => {
     fetchEmployees();
   }, []);
+
+  useEffect(() => {
+    setFilteredEmployees(
+      employees.filter(employee => 
+        employee.fullname.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  }, [searchTerm, employees]);
 
   const fetchEmployees = async () => {
     try {
@@ -63,7 +73,6 @@ function EmployeeManagement() {
     }
   };
   
-
   const deleteEmployee = async (id) => {
     try {
       await axios.delete(`http://localhost:8081/employees/${id}`);
@@ -75,7 +84,7 @@ function EmployeeManagement() {
   };
 
   const resetForm = () => {
-    setNewEmployee({ name: '', email: '', role: '' });
+    setNewEmployee({ name: '', email: '', role: '', service: '' });
     setEditingEmployee(null);
   };
 
@@ -91,9 +100,7 @@ function EmployeeManagement() {
 
   return (
     <div>
-        <div>
-            <Menu />
-        </div>
+        <Menu />
         <div className="employee-management">
         <h1>Gestion des Employés</h1>
 
@@ -101,81 +108,42 @@ function EmployeeManagement() {
 
         <form onSubmit={addOrEditEmployee} className="employee-form">
             <h2>{editingEmployee ? 'Modifier Employé' : 'Ajouter Employé'}</h2>
-
             <div className="form-group">
             <label htmlFor="name">Nom</label>
-            <input
-                id="name"
-                type="text"
-                value={newEmployee.name}
-                onChange={(e) => setNewEmployee({ ...newEmployee, name: e.target.value })}
-                required
-            />
+            <input id="name" type="text" value={newEmployee.name} onChange={(e) => setNewEmployee({ ...newEmployee, name: e.target.value })} required />
             </div>
-
             <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input
-                id="email"
-                type="email"
-                value={newEmployee.email}
-                onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })}
-                required
-            />
+            <input id="email" type="email" value={newEmployee.email} onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })} required />
             </div>
-
             <div className="form-group">
             <label htmlFor="role">Rôle</label>
             <select id="role" onChange={(e) => setNewEmployee({ ...newEmployee, role: e.target.value })} required>
-              <option value="user" >User</option>
+              <option value="user">User</option>
               <option value="admin">Admin</option>
             </select>
             </div>
             <div className="form-group">
             <label htmlFor="service">Service</label>
-            <input
-                id="service"
-                type="text"
-                value={newEmployee.service}
-                onChange={(e) => setNewEmployee({ ...newEmployee, service: e.target.value })}
-                required
-            />
+            <input id="service" type="text" value={newEmployee.service} onChange={(e) => setNewEmployee({ ...newEmployee, service: e.target.value })} required />
             </div>
-            <div className="form-group">
-                <label htmlFor="password">Mot de Passe</label>
-                <input
-                    id="password"
-                    type="password"
-                    value={newEmployee.password || ''}
-                    onChange={(e) => setNewEmployee({ ...newEmployee, password: e.target.value })}
-                    required={!editingEmployee} // Password required only for new employees
-                />
-            </div>
-            {editingEmployee && (
-            <div className="form-group">
-                <label htmlFor="new-password">Nouveau Mot de Passe</label>
-                <input
-                id="new-password"
-                type="password"
-                placeholder="Laissez vide pour ne pas changer"
-                onChange={(e) => setNewEmployee({ ...newEmployee, newPassword: e.target.value })}
-                />
-            </div>
-            )}
-
-
-
             <button type="submit" className="btn btn-primary">
             {editingEmployee ? 'Mettre à jour' : 'Ajouter'}
             </button>
-            {editingEmployee && (
-            <button type="button" onClick={resetForm} className="btn btn-secondary">
-                Annuler
-            </button>
-            )}
+            {editingEmployee && <button type="button" onClick={resetForm} className="btn btn-secondary">Annuler</button>}
         </form>
         </div>
-
+        <div className='container'>
+          <label htmlFor="Rechercher un utilisateur">Rechercher un utilisateur</label>
+          <input
+            type="text"
+            placeholder="Rechercher un employé..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-bar"
+          />
+        </div>
+        
         <table className="employees-table">
             <thead>
             <tr>
@@ -186,33 +154,26 @@ function EmployeeManagement() {
             </tr>
             </thead>
             <tbody>
-            {employees.length > 0 ? (
-                employees.map((employee) => (
+            {filteredEmployees.length > 0 ? (
+                filteredEmployees.map((employee) => (
                 <tr key={employee.id}>
                    <td data-label="Nom">{employee.fullname}</td>
-                  <td data-label="Email">{employee.email}</td>
+                   <td data-label="Email">{employee.email}</td>
                    <td data-label="Rôle">{employee.role}</td>
-                  <td>
-                    <button onClick={() => startEditing(employee)} className="btn btn-bleu">
-                      Modifier
-                    </button>
-                    <button onClick={() => deleteEmployee(employee.id)} className="btn btn-danger">
-                      Supprimer
-                    </button>
+                   <td>
+                    <button onClick={() => startEditing(employee)} className="btn btn-bleu">Modifier</button>
+                    <button onClick={() => deleteEmployee(employee.id)} className="btn btn-danger">Supprimer</button>
                   </td>
                 </tr>
                 ))
             ) : (
                 <tr>
-                <td colSpan="4" className="text-center">
-                    Aucun employé trouvé.
-                </td>
+                <td colSpan="4" className="text-center">Aucun employé trouvé.</td>
                 </tr>
             )}
             </tbody>
         </table>
     </div>
-    
   );
 }
 

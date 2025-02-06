@@ -115,7 +115,7 @@ function Formations() {
         {error && <div className="alert">{error}</div>}
 
         <form onSubmit={addOrEditFormation} className="formation-form">
-          <h2>{editingFormation ? 'Edit Formation' : 'Add Formation'}</h2>
+          <h2>{editingFormation ? 'Modifier Formation' : 'Ajouter Formation'}</h2>
 
           <div className="form-group">
             <label htmlFor="titre">Title</label>
