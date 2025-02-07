@@ -111,23 +111,8 @@ function DashboardU() {
                         <h2> Formation disponible</h2>
                         <span>{Formations.length}</span>
                         <Link to="/FormationDisponible">Plus d'info <FaArrowRight /></Link>
-                    </div>
-
-                    <div className="dashboard-card">
-                <FaUserCheck className="icon" />
-                <h2>Inscription Formation</h2>
-                <span>0</span>
-                {/* <span>{{formationsR.length}}</span> */}
-                <a href="/inscription">
-                En cours de developper <FaArrowRight />
-                </a>
-            </div>
-
-
-           
+                    </div>          
                 </div>
-
-               
             </div>
         </div>
     );

@@ -9,14 +9,13 @@ import Login from "./pages/Auth/Login";
 import EmployeeManagement from "./pages/Admin/Employee/EmployeeManagement";
 import Formations from "./pages/Admin/Formation/formation";
 import NotFound from "./pages/404 Page/notFound";
-// import FormationCard from "./components/layout/FormationCard";
 import FormationUsers from "./pages/users/FormationUsers";
 import Dashboard from "./pages/Admin/dashboard/dashboard";
 import Evenment from "./pages/Admin/AjouterEvenment/AddEvenment";
 import AjouterActualite from "./pages/Admin/AjouterActualiter/Actualiter";
-import Inscription from "./pages/users/Inscription";
 import FormationDemande from "./pages/users/formationdemande";
 import DashboardU from "./pages/users/dashboardusers/dashboardU";
+import LoadingPage from "./components/common/LoadingPage";
 
 const ConfigueRouter = () => {
   const [role, setRole] = useState(null); // Initialize as `null` to distinguish between loading and no role
@@ -62,7 +61,7 @@ const ConfigueRouter = () => {
   };
 
   if (loading) {
-    return <div className="loading-screen">Loading...</div>;
+    return <LoadingPage />;
   }
   return (
     <Router>
@@ -91,7 +90,6 @@ const ConfigueRouter = () => {
           <>
             <Route path="/profile" element={<FormationUsers />} />
             <Route path="/courses" element={<DashboardU />} />
-            <Route path="/inscription" element={<Inscription />} />
             <Route path="/formation-demande" element={<FormationDemande />} />
             <Route path="/FormationDisponible" element={<Courses />} />
             <Route path="*" element={<NotFound />} />

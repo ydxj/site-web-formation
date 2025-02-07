@@ -92,7 +92,6 @@ function Menu() {
             <Link to="/courses">
               <FaTachometerAlt /> Dashboard 
             </Link>
-            
 
             <Link to="/FormationDisponible" className="flex items-center gap-2">
               <MdOutlineMedicalInformation  />
@@ -103,9 +102,6 @@ function Menu() {
               <FaBook/> Formation Demande
             </Link>
 
-            <Link to="/inscription">
-              <FaUserPlus /> Inscription Formation
-            </Link>
             <Link to="/profile">
               <FaCogs /> Mon profil
             </Link>
