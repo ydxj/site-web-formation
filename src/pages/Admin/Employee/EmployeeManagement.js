@@ -103,29 +103,27 @@ function EmployeeManagement() {
         <Menu />
         <div className="employee-management">
         <h1>Gestion des Employés</h1>
-
         {error && <div className="alert">{error}</div>}
-
         <form onSubmit={addOrEditEmployee} className="employee-form">
             <h2>{editingEmployee ? 'Modifier Employé' : 'Ajouter Employé'}</h2>
             <div className="form-group">
-            <label htmlFor="name">Nom</label>
-            <input id="name" type="text" value={newEmployee.name} onChange={(e) => setNewEmployee({ ...newEmployee, name: e.target.value })} required />
+              <label htmlFor="name">Nom</label>
+              <input id="name" type="text" value={newEmployee.name} onChange={(e) => setNewEmployee({ ...newEmployee, name: e.target.value })} required />
             </div>
             <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input id="email" type="email" value={newEmployee.email} onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })} required />
+              <label htmlFor="email">Email</label>
+              <input id="email" type="email" value={newEmployee.email} onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })} required />
             </div>
             <div className="form-group">
-            <label htmlFor="role">Rôle</label>
-            <select id="role" onChange={(e) => setNewEmployee({ ...newEmployee, role: e.target.value })} required>
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
-            </select>
+              <label htmlFor="role" className="form-label">Rôle</label>
+              <select className="form-select" id="role" onChange={(e) => setNewEmployee({ ...newEmployee, role: e.target.value })} required>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
             </div>
             <div className="form-group">
-            <label htmlFor="service">Service</label>
-            <input id="service" type="text" value={newEmployee.service} onChange={(e) => setNewEmployee({ ...newEmployee, service: e.target.value })} required />
+              <label htmlFor="service">Service</label>
+              <input id="service" type="text" value={newEmployee.service} onChange={(e) => setNewEmployee({ ...newEmployee, service: e.target.value })} required />
             </div>
             <button type="submit" className="btn btn-primary">
             {editingEmployee ? 'Mettre à jour' : 'Ajouter'}
@@ -141,6 +139,7 @@ function EmployeeManagement() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-bar"
+            style={{border:"0.5px gray solid",borderRadius:"10px"}}
           />
         </div>
         
