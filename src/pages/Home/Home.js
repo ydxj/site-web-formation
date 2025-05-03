@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Home.css";
 import { MdLocalHospital } from "react-icons/md";
@@ -11,37 +11,39 @@ import EventsList from "../../components/layout/EventsList";
 import EventDetails from "../../components/layout/EventDetails";
 
 const Home = () => {
-  const [username,setUsername] = useState("")
+  const [username, setUsername] = useState("");
   const [events, setEvents] = useState([]);
   const [newsList, setNewsList] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [Role,setRole] = useState("")
+  const [Role, setRole] = useState("");
+
   useEffect(() => {
-      // Fetch events when the component loads
     axios
       .get("http://localhost:8081/events")
       .then((response) => setEvents(response.data))
       .catch((error) => console.error("Error fetching events:", error));
+
     const fetchUserRole = async () => {
       try {
         const response = await axios.get("http://localhost:8081/menu", {
           withCredentials: true,
         });
         if (response.data.valid) {
-          setRole(response.data.role)
+          setRole(response.data.role);
           setUsername(response.data.username);
         } else {
-          console.log("Erreur")
+          console.log("Erreur");
         }
       } catch (error) {
         console.error("Error fetching user role:", error);
       }
     };
+
     const fetchNews = async () => {
       try {
         const response = await axios.get("http://localhost:8081/get-news");
         setNewsList(response.data);
-        console.log(response.data)
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching news:", error);
       }
@@ -51,7 +53,6 @@ const Home = () => {
     fetchNews();
   }, []);
 
-
   const handleEventClick = (event) => setSelectedEvent(event);
   const handleBack = () => setSelectedEvent(null);
 
@@ -60,34 +61,44 @@ const Home = () => {
       {/* Header Section */}
       <div className="header-content">
         <a href="/">
-          <img src="./assets/images/logo.png" alt="CHU Logo" className="logo" />
-        </a>
-        {username ?
-        (<a href={ Role === "admin" ? "/dashboard" :"/courses"} >
-          <button className="Button-userName">{username[0]}</button>
-        </a>)
-        :
-        (<a href="/login">
           <img
-            src="./assets/images/login.png"
-            alt="Profile"
-            className="profile-icon"
+            src="./assets/images/logo.png"
+            alt="CHU Logo"
+            className="logo"
           />
-        </a>)}
+        </a>
+        {username ? (
+          <a href={Role === "admin" ? "/dashboard" : "/courses"}>
+            <button className="Button-userName">{username[0]}</button>
+          </a>
+        ) : (
+          <a href="/login">
+            <img
+              src="./assets/images/login.png"
+              alt="Profile"
+              className="profile-icon"
+            />
+          </a>
+        )}
       </div>
+
       <header className="header">
-      {events.length > 0 && (
-        <Carousel className="container">
-          {events
-            .map((event, index) => (
+        {events.length > 0 && (
+          <Carousel className="container">
+            {events.map((event, index) => (
               <Carousel.Item key={index}>
-                <img className="d-block w-100" src={event.image} alt={`Slide ${index + 1}`} height="350px" />
+                <img
+                  className="d-block w-100"
+                  src={event.image}
+                  alt={`Slide ${index + 1}`}
+                  height="350px"
+                />
                 <Carousel.Caption
                   style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.8)", // Semi-transparent background
-                    borderRadius: "10px", // Rounded corners
-                    padding: "10px", // Padding
-                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Elevated shadow
+                    backgroundColor: "rgba(255, 255, 255, 0.8)",
+                    borderRadius: "10px",
+                    padding: "10px",
+                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
                   }}
                 >
                   <h5
@@ -105,13 +116,26 @@ const Home = () => {
                 </Carousel.Caption>
               </Carousel.Item>
             ))}
-        </Carousel>
-      )}
-    </header>
+          </Carousel>
+        )}
+      </header>
 
-
-      {/* Main Section */}
       <main className="main">
+        {/* ✅ Bienvenue Section ajoutée ici */}
+        <div className="row justify-content-center mb-4">
+          <div className="col-md-10 text-center">
+            <div className="p-4 bg-light rounded shadow">
+              <h2 className="text-primary mb-3">
+                Bienvenue sur la plateforme de formation interne
+              </h2>
+              <p className="lead">
+                Cette plateforme est dédiée à la gestion et au suivi des
+                formations continues pour les professionnels de santé.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Update Section */}
         <div className="row queryM ">
           <div className="col-6 partsM">
@@ -119,19 +143,22 @@ const Home = () => {
               <div
                 className="mb-5"
                 style={{
-                  backgroundColor: "#f9f9f9", // Light background
-                  padding: "20px", // Add space inside the container
-                  borderRadius: "15px", // Rounded corners
-                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow
-                  maxWidth: "100%", // Limit the width for better readability
-                  textAlign: "center", // Center-align content
-                  fontFamily: "'Arial', sans-serif", // Clean, modern font
+                  backgroundColor: "#f9f9f9",
+                  padding: "20px",
+                  borderRadius: "15px",
+                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+                  maxWidth: "100%",
+                  textAlign: "center",
+                  fontFamily: "'Arial', sans-serif",
                 }}
               >
                 {selectedEvent ? (
                   <EventDetails event={selectedEvent} onBack={handleBack} />
                 ) : (
-                  <EventsList events={newsList} onEventClick={handleEventClick} />
+                  <EventsList
+                    events={newsList}
+                    onEventClick={handleEventClick}
+                  />
                 )}
               </div>
             </div>
@@ -141,12 +168,23 @@ const Home = () => {
               <section className="update-section">
                 <div className="update-text">
                   <h3>
-                    Restez à Jour sur les Nouvelles Maladies : Une Formation Essentielle pour les Médecins
+                    Restez à Jour sur les Nouvelles Maladies : Une Formation
+                    Essentielle pour les Médecins
                   </h3>
                   <p>
-                    Mettez à jour vos connaissances, développez de nouvelles compétences, obtenez notre formation en ligne, dédiée aux médecins et au personnel hospitalier, vous offre les outils nécessaires pour comprendre et anticiper ces nouveaux défis.
+                    Mettez à jour vos connaissances, développez de nouvelles
+                    compétences, obtenez notre formation en ligne, dédiée aux
+                    médecins et au personnel hospitalier, vous offre les outils
+                    nécessaires pour comprendre et anticiper ces nouveaux
+                    défis.
                   </p>
-                  <button className="button">Démarrer mon inscription</button>
+                  <a
+                    className="button"
+                    href="login"
+                    style={{ textDecoration: "none" }}
+                  >
+                    Démarrer mon inscription
+                  </a>
                 </div>
                 <div>
                   <iframe
@@ -160,7 +198,7 @@ const Home = () => {
               </section>
             </div>
           </div>
-        </div>        
+        </div>
 
         {/* Hospitals Section */}
         <section className="hospitals-section">
@@ -195,23 +233,38 @@ const Home = () => {
 
         <div className="hospitals-details">
           <div>
-            <h4 className="localisation-title" style={{color:'rgb(67, 136, 214)'}}>CHU Oujda</h4>
+            <h4 className="localisation-title" style={{ color: "rgb(67, 136, 214)" }}>
+              CHU Oujda
+            </h4>
             <p>Qui nous-sommes?</p>
             <p>Qu’est-ce qu’on fait</p>
           </div>
           <div>
-      <h4 style={{ color: "rgb(67, 136, 214)" }}>CONTACT</h4>
-      <p>
-        <MdEmail style={{ color: "rgba(15, 12, 12, 0.644)", marginRight: "8px" }} />
-        Email: <a href="mailto:contact@chuoujda.ma" className="email">contact@chuoujda.ma</a>
-      </p>
-      <p>
-        <FiPhone style={{ color: "rgba(15, 12, 12, 0.644)", marginRight: "8px" }} />
-        Téléphone: +212 5 36 53 91 00
-      </p>
-    </div>
+            <h4 style={{ color: "rgb(67, 136, 214)" }}>CONTACT</h4>
+            <p>
+              <MdEmail
+                style={{
+                  color: "rgba(15, 12, 12, 0.644)",
+                  marginRight: "8px",
+                }}
+              />
+              Email:{" "}
+              <a href="mailto:contact@chuoujda.ma" className="email">
+                contact@chuoujda.ma
+              </a>
+            </p>
+            <p>
+              <FiPhone
+                style={{
+                  color: "rgba(15, 12, 12, 0.644)",
+                  marginRight: "8px",
+                }}
+              />
+              Téléphone: +212 5 36 53 91 00
+            </p>
+          </div>
           <div>
-            <h4 style={{color:'rgb(28, 114, 212)'}}>LOCALISATION DU CHU</h4>
+            <h4 style={{ color: "rgb(28, 114, 212)" }}>LOCALISATION DU CHU</h4>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d52511.03187619542!2d-1.910535!3d34.656231!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6c8a1da16bc171e1!2sCentre%20Hospitalier%20Universitaire%20Mohammed%20VI!5e0!3m2!1sfr!2sma!4v1576061269449!5m2!1sfr!2sma"
               width="250"
