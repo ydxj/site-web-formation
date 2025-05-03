@@ -196,8 +196,8 @@ function Formations() {
             <tr>
               <th style={{textAlign:'center'}}>Title</th>
               <th style={{textAlign:'center'}}>Durée</th>
-              <th style={{width:"150px",textAlign:'center'}}>Date de début</th>
-              <th style={{width:"150px",textAlign:'center'}}>Date de fin</th>
+              <th style={{width:"150px",textAlign:'center'}}>Date_de_début</th>
+              <th style={{width:"150px",textAlign:'center'}}>Date_de_fin</th>
               <th style={{textAlign:'center'}}>Description</th>
               <th style={{textAlign:'center'}}>Actions</th>
             </tr>
