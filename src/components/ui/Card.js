@@ -55,19 +55,32 @@ function Card(props) {
   };
 
   return (
-    <div className="col-md-4 d-flex align-items-strtch mb-4"> {/* Added Bootstrap grid classes */}
+    <div className="col-md-4 d-flex align-items-stretch mb-4"> {/* Added Bootstrap grid classes */}
       <div className="card shadow-lg p-3">
-        <h1 className="card-title text-primary">{formation.titre}</h1>
+        
+        {/* Image Placeholder */}
+        <div className="card-img-top">
+          <img src="https://via.placeholder.com/150" alt="formation" className="img-fluid" />
+        </div>
+        
+        <h1 className="card-title text-primary mt-3">{formation.titre}</h1>
         <p><strong>Durée :</strong> {formation.duree} jours</p>
         <p><strong>Date :</strong> {formatDate(formation.date_debut)} - {formatDate(formation.date_fin)}</p>
         <p><strong>Description :</strong> {formation.description}</p>
-        <button className="btn btn-primary me-3 card-button" onClick={handleInscription}>S'inscrire</button>
-        {formation.filepath &&
-         <button className="btn btn-success " onClick={handleDownload}>
-          <i className='fa fa-download me-2'></i>
-          Telecharger</button>}
-      {message && <p className="message alert alert-info text-center rounded">{message}</p>}
+        
+        {/* Adjust button size and add spacing */}
+        <div className="d-flex gap-2">
+          <button className="btn btn-primary btn-sm w-100" onClick={handleInscription}>S'inscrire</button>
+          
+          {formation.filepath && 
+            <button className="btn btn-success btn-sm w-100" onClick={handleDownload}>
+              <i className='fa fa-download me-2'></i>
+              Télécharger
+            </button>
+          }
+        </div>
 
+        {message && <p className="message alert alert-info text-center rounded">{message}</p>}
       </div>
     </div>
   );
