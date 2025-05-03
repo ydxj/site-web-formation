@@ -111,8 +111,8 @@ function FormationDemande() {
                         <thead className="table-primary text-center">
                             <tr>
                                 <th>Titre</th>
-                                <th>Date Début</th>
-                                <th>Date Fin</th>
+                                <th>Date_Début</th>
+                                <th>Date_Fin</th>
                                 <th>Description</th>
                                 <th>Action</th>
                             </tr>
