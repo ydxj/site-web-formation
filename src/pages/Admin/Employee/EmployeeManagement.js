@@ -64,8 +64,9 @@ function EmployeeManagement() {
       }
     } else {
       try {
-        await axios.post('http://localhost:8081/employees', newEmployee);
-        setEmployees([...employees, newEmployee]);
+        const res = await axios.post('http://localhost:8081/employees', newEmployee);
+        const addedEmployee = { ...newEmployee, id: res.data.id, fullname: newEmployee.name };
+        setEmployees([...employees, addedEmployee]);
         resetForm();
       } catch (err) {
         console.error('Error adding employee:', err);
@@ -94,7 +95,7 @@ function EmployeeManagement() {
     setNewEmployee({
       name: employee.fullname,
       email: employee.email,
-      password: employee.password,
+      password: '',
       role: employee.role,
       service: employee.service,
     });
@@ -122,7 +123,7 @@ function EmployeeManagement() {
             </div>
             <div className="form-group">
               <label htmlFor="role" className="form-label">Rôle</label>
-              <select className="form-select" id="role" onChange={(e) => setNewEmployee({ ...newEmployee, role: e.target.value })} required>
+              <select className="form-select" id="role" value={newEmployee.role} onChange={(e) => setNewEmployee({ ...newEmployee, role: e.target.value })} required>
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
               </select>
