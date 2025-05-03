@@ -39,7 +39,7 @@ function DashboardU() {
                 withCredentials: true,
             });
             if (response.data.valid) {
-                console.log(response.data);
+                // console.log(response.data);
                 setID(response.data.id);
             }
         } catch (error) {
@@ -56,7 +56,7 @@ function DashboardU() {
             const response = await axios.get('http://localhost:8081/formationR', {
                 params: { userId: ID }
             });
-            console.log("Réponse reçue :", response.data);
+            // console.log("Réponse reçue :", response.data);
             setFormationsR(response.data);
         } catch (err) {
             console.error('Erreur lors de la récupération des formations:', err);

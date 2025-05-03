@@ -12,7 +12,7 @@ function FormationRequest() {
   const fetchRequests = async () => {
     try {
       const response = await axios.get('http://localhost:8081/formation-requests');
-      console.log(response.data)
+      // console.log(response.data)
       setRequests(response.data);
     } catch (err) {
       console.error('Error fetching requests:', err);

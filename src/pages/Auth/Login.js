@@ -54,7 +54,7 @@ function Autentification({ onLogin }) {
         );
 
         if (response.data.Login) {
-          console.log("Authentification réussie!");
+          // console.log("Authentification réussie!");
           await onLogin();
           if (response.data.role === "admin") {
             navigate("/Dashboard");
@@ -102,7 +102,11 @@ function Autentification({ onLogin }) {
         <div className="auth-footer">
           <span>Vous n'avez pas de compte?</span>
           <hr />
+
           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chu@contact.ma&su=Demande%20d'information">Contacter l'administration pour plus d'informations</a>
+
+          <a href="mailto:contact@chuoujda.ma">Contacter l'administration pour plus d'informations</a>
+
         </div>
       </div>
     </div>
