@@ -2,14 +2,18 @@ import Menu from "../../components/ui/menu";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+// Ajouter Bootstrap dynamiquement si pas encore ajouté
+const bootstrapLink = document.createElement("link");
+bootstrapLink.rel = "stylesheet";
+bootstrapLink.href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css";
+document.head.appendChild(bootstrapLink);
+
 function FormationDemande() {
-    const [formations, setFormations] = useState([]);
     const [formationsR, setFormationsR] = useState([]);
     const [error, setError] = useState('');
     const [ID, setID] = useState('');
 
     useEffect(() => {
-        fetchFormations();
         fetchID();
     }, []);
 
@@ -25,27 +29,15 @@ function FormationDemande() {
                 withCredentials: true,
             });
             if (response.data.valid) {
-                // console.log(response.data);
                 setID(response.data.id);
             }
         } catch (error) {
-            console.error("Error fetching user role:", error);
-        }
-    };
-
-    const fetchFormations = async () => {
-        try {
-            const response = await axios.get('http://localhost:8081/formations');
-            setFormations(response.data);
-        } catch (err) {
-            console.error('Error fetching formations:', err);
-            setError('Unable to fetch formations.');
+            console.error("Erreur ID:", error);
         }
     };
 
     const fetchFormationsR = async () => {
         if (!ID) {
-            console.error("ID de l'employé manquant.");
             setError("L'ID de l'employé est requis.");
             return;
         }
@@ -53,10 +45,9 @@ function FormationDemande() {
             const response = await axios.get('http://localhost:8081/formationR', {
                 params: { userId: ID }
             });
-            // console.log("Réponse reçue :", response.data);
             setFormationsR(response.data);
         } catch (err) {
-            console.error('Erreur lors de la récupération des formations:', err);
+            console.error('Erreur récupération formations:', err);
             setError('Impossible de récupérer les formations.');
         }
     };
@@ -70,44 +61,85 @@ function FormationDemande() {
         <div>
             <Menu />
 
-            <div className="formation-container">
-                <div className="header">
-                    <h1>Formation Demande</h1>
-                </div>
+            ✅ CSS intégré
+            <style>
+                {`
+                .table td {
+                    vertical-align: middle;
+                }
+                .btn-status {
+                    white-space: nowrap;
+                    text-align: center;
+                    font-size: 14px;
+                    padding: 5px 10px;
+                    width: 100%;
+                    display: inline-block;
+                }
+                @media (max-width: 768px) {
+                    .table td {
+                        font-size: 13px;
+                        padding: 0.4rem;
+                    }
+                    .btn-status {
+                        font-size: 12px;
+                        padding: 4px 6px;
+                    }
+                }
+                /* Classe pour la description */
+                td.description {
+                    max-width: 250px;
+                    overflow: hidden; /* Empêcher le débordement du texte */
+                    text-overflow: ellipsis; /* Ajouter "..." si le texte est trop long */
+                    white-space: nowrap; /* Empêcher le retour à la ligne */
+                }
 
-                {error && <p className="error-message">{error}</p>}
+                /* Option : Pour autoriser le retour à la ligne de la description */
+                td.description.wrap {
+                    white-space: normal; /* Permet le retour à la ligne */
+                    word-wrap: break-word; /* Coupure des mots longs */
+                }
+                `}
+            </style>
 
-                <div className="table-container">
-                    <table className="formation-table">
-                        <thead>
-                            <tr className="table-row">
-                                <th className="table-header-cell">Titre</th>
-                                <th className="table-header-cell">Date Début</th>
-                                <th className="table-header-cell">Date Fin</th>
-                                <th className="table-header-cell">Description</th>
-                                <th className="table-header-cell">Action</th>
+            <div className="container my-4">
+                <h1 className="mb-4">Formation Demande</h1>
+
+                {error && <div className="alert alert-danger">{error}</div>}
+
+                <div className="table-responsive">
+                    <table className="table table-bordered table-hover">
+                        <thead className="table-primary text-center">
+                            <tr>
+                                <th>Titre</th>
+                                <th>Date Début</th>
+                                <th>Date Fin</th>
+                                <th>Description</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {formationsR.map((formation) => (
-                                <tr className="table-row" key={formation.id}>
-                                    <td className="table-cell">{formation.formation_title}</td>
-                                    <td className="table-cell">{formatDate(formation.date_debut)}</td>
-                                    <td className="table-cell">{formatDate(formation.date_fin)}</td>
-                                    <td className="table-cell">{formation.description}</td>
-                                    <td className="table-cell">
+                                <tr key={formation.id}>
+                                    <td style={{ whiteSpace: "nowrap" }}>{formation.formation_title}</td>
+                                    <td style={{ whiteSpace: "nowrap" }}>{formatDate(formation.date_debut)}</td>
+                                    <td style={{ whiteSpace: "nowrap" }}>{formatDate(formation.date_fin)}</td>
+                                    {/* Appliquer la classe description */}
+                                    <td className="description wrap">
+                                        {formation.description}
+                                    </td>
+                                    <td>
                                         {formation.status === "validated" && (
-                                            <button className="card-button" style={{ backgroundColor: 'rgb(36, 150, 50)', width: "100%" }}>
+                                            <button className="btn btn-success btn-status">
                                                 Accepter
                                             </button>
                                         )}
                                         {formation.status === "rejected" && (
-                                            <button className="card-button" style={{ backgroundColor: 'rgb(215, 9, 9)', width: "100%" }}>
+                                            <button className="btn btn-danger btn-status">
                                                 Refuser
                                             </button>
                                         )}
                                         {formation.status === "pending" && (
-                                            <button className="card-button" style={{ backgroundColor: 'rgb(35, 49, 156)', width: "100%" }}>
+                                            <button className="btn btn-primary btn-status">
                                                 En Cours
                                             </button>
                                         )}
