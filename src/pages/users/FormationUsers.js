@@ -31,6 +31,9 @@ function FormationUsers() {
     fetchUserRole();
   }, []);
   const handleChangePassword = async () => {
+    setConfirmPassword('');
+    setCurrentPassword('');
+    setNewPassword('');
     if (newPassword !== confirmPassword) {
       setMessage("New password and confirmation do not match.");
       return;
