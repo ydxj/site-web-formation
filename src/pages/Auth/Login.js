@@ -104,9 +104,6 @@ function Autentification({ onLogin }) {
           <hr />
 
           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chu@contact.ma&su=Demande%20d'information">Contacter l'administration pour plus d'informations</a>
-
-          <a href="mailto:contact@chuoujda.ma">Contacter l'administration pour plus d'informations</a>
-
         </div>
       </div>
     </div>
