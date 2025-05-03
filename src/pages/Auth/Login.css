@@ -195,7 +195,8 @@ input {
     }
 
     .auth-footer {
-        margin-top: 90px;
+        margin-top: 30px;
+        margin-left: 60px;
     }
 }
 
@@ -205,3 +206,4 @@ hr {
     margin: 10px 0;
     width: 100%;
 }
+
