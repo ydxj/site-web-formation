@@ -10,6 +10,7 @@ function EmployeeManagement() {
   const [newEmployee, setNewEmployee] = useState({
     name: '',
     email: '',
+    password: '',
     role: 'user',
     service: '',
   });
@@ -84,7 +85,7 @@ function EmployeeManagement() {
   };
 
   const resetForm = () => {
-    setNewEmployee({ name: '', email: '', role: '', service: '' });
+    setNewEmployee({ name: '', email: '', password: '', role: '', service: '' });
     setEditingEmployee(null);
   };
 
@@ -93,6 +94,7 @@ function EmployeeManagement() {
     setNewEmployee({
       name: employee.fullname,
       email: employee.email,
+      password: employee.password,
       role: employee.role,
       service: employee.service,
     });
@@ -113,6 +115,10 @@ function EmployeeManagement() {
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input id="email" type="email" value={newEmployee.email} onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })} required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">password</label>
+              <input id="password" type="password" value={newEmployee.password} onChange={(e) => setNewEmployee({ ...newEmployee, password: e.target.value })} required />
             </div>
             <div className="form-group">
               <label htmlFor="role" className="form-label">Rôle</label>
@@ -148,6 +154,7 @@ function EmployeeManagement() {
             <tr>
                 <th>Nom</th>
                 <th>Email</th>
+                <th>Service</th>
                 <th>Rôle</th>
                 <th>Actions</th>
             </tr>
@@ -158,6 +165,7 @@ function EmployeeManagement() {
                 <tr key={employee.id}>
                    <td data-label="Nom">{employee.fullname}</td>
                    <td data-label="Email">{employee.email}</td>
+                   <td data-label="Service">{employee.service}</td>
                    <td data-label="Rôle">{employee.role}</td>
                    <td>
                     <button onClick={() => startEditing(employee)} className="btn btn-bleu">Modifier</button>
