@@ -44,7 +44,7 @@ const Home = () => {
         const response = await axios.get("http://localhost:8081/get-news");
         setNewsList(response.data);
 
-        console.log(response.data);
+        // console.log(response.data);
 
         // console.log(response.data)
 
