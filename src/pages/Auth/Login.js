@@ -103,7 +103,7 @@ function Autentification({ onLogin }) {
           <span>Vous n'avez pas de compte?</span>
           <hr />
 
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chu@contact.ma&su=Demande%20d'information">Contacter l'administration pour plus d'informations</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@chuoujda.ma&su=Demande%20d'information">Contacter l'administration pour plus d'informations</a>
         </div>
       </div>
     </div>
