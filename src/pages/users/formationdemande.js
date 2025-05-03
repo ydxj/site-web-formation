@@ -61,7 +61,7 @@ function FormationDemande() {
         <div>
             <Menu />
 
-            ✅ CSS intégré
+           
             <style>
                 {`
                 .table td {
