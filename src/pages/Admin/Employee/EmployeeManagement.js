@@ -130,7 +130,19 @@ function EmployeeManagement() {
             </div>
             <div className="form-group">
               <label htmlFor="service">Service</label>
-              <input id="service" type="text" value={newEmployee.service} onChange={(e) => setNewEmployee({ ...newEmployee, service: e.target.value })} required />
+              <select id="service" name="service" onChange={(e) => setNewEmployee({ ...newEmployee, service: e.target.value })} required>
+                <option value="">-- Sélectionner un service --</option>
+                <option value="Urgences">Urgences</option>
+                <option value="Cardiologie">Cardiologie</option>
+                <option value="Neurologie">Neurologie</option>
+                <option value="Pédiatrie">Pédiatrie</option>
+                <option value="Radiologie">Radiologie</option>
+                <option value="Gynécologie">Gynécologie</option>
+                <option value="Chirurgie">Chirurgie</option>
+                <option value="Dermatologie">Dermatologie</option>
+                <option value="Oncologie">Oncologie</option>
+                <option value="Psychiatrie">Psychiatrie</option>
+              </select>
             </div>
             <button type="submit" className="btn btn-primary">
             {editingEmployee ? 'Mettre à jour' : 'Ajouter'}

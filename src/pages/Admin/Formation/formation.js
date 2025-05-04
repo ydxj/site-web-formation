@@ -11,6 +11,7 @@ function Formations() {
     date_debut: '',
     date_fin: '',
     description: '',
+    service:'',
     file : null,
   });
   const [editingFormation, setEditingFormation] = useState(null);
@@ -44,6 +45,7 @@ function Formations() {
     formData.append('description', newFormation.description);
     formData.append('date_debut', newFormation.date_debut);
     formData.append('date_fin', newFormation.date_fin);
+    formData.append('service', newFormation.service);
 
     if (newFormation.file) {
       formData.append('file', newFormation.file); // Attach the file
@@ -178,6 +180,22 @@ function Formations() {
               onChange={(e) => setNewFormation({ ...newFormation, file: e.target.files[0] })}
               required
             />
+          </div>
+          <div className="form-group">
+              <label for="service">Service Hospitalier :</label>
+              <select id="service" name="service" onChange={(e) => setNewFormation({ ...newFormation, service: e.target.value })} required>
+                <option value="">-- Sélectionner un service --</option>
+                <option value="Urgences">Urgences</option>
+                <option value="Cardiologie">Cardiologie</option>
+                <option value="Neurologie">Neurologie</option>
+                <option value="Pédiatrie">Pédiatrie</option>
+                <option value="Radiologie">Radiologie</option>
+                <option value="Gynécologie">Gynécologie</option>
+                <option value="Chirurgie">Chirurgie</option>
+                <option value="Dermatologie">Dermatologie</option>
+                <option value="Oncologie">Oncologie</option>
+                <option value="Psychiatrie">Psychiatrie</option>
+              </select>
           </div>
 
           <button type="submit" className="btn btn-primary">

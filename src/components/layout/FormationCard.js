@@ -7,6 +7,7 @@ function FormationCard(){
     const [formationsR, setFormationsR] = useState([]);
     const [error, setError] = useState('');
     const [ID, setID] = useState('');
+    const [Service, setService] = useState("");
     useEffect(() => {
         fetchFormations();
         fetchID();
@@ -22,8 +23,9 @@ function FormationCard(){
             withCredentials: true,
           });
           if (response.data.valid) {
-            // console.log(response.data)
+            // console.log(response.data.service)
             setID(response.data.id);
+            setService(response.data.service);
           }
         } catch (error) {
           console.error("Error fetching user role:", error);
@@ -56,7 +58,7 @@ function FormationCard(){
             setError('Impossible de récupérer les formations.');
         }
     };
-
+    // console.log(formations)
 
     return(
         <div>
@@ -83,17 +85,14 @@ function FormationCard(){
                     <div className="row">
                         {formations
                             .filter(data => !formationsR.some(r => r.id === data.id)) // Exclude duplicates
+                            .filter(data => data.service === Service) // filtrer par service
                             .map((data, index) => (
                                 <Card key={index} items={data} />
                             ))
                         }
                     </div>
                 </div>
-
-                
 			</div>
-			
-		
         </div>
     )
 }

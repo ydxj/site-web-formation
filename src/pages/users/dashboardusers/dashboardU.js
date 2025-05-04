@@ -14,6 +14,7 @@ function DashboardU() {
     const currentHour = new Date().getHours(); // Get the current hour
     const [formationsR, setFormationsR] = useState([]);
     const [ID, setID] = useState('');
+    const [Service, setService] = useState("");
     const messagere = ()=>{
         if (currentHour < 12) {
         setgreetingMessage("Bonjour") // Good Morning in French
@@ -40,6 +41,7 @@ function DashboardU() {
             });
             if (response.data.valid) {
                 // console.log(response.data);
+                setService(response.data.service);
                 setID(response.data.id);
             }
         } catch (error) {
@@ -109,7 +111,7 @@ function DashboardU() {
                     <div className="dashboard-card">
                         <FaUserCheck className="icon" />
                         <h2> Formation disponible</h2>
-                        <span>{Formations.length}</span>
+                        <span>{Formations.filter(data => data.service === Service).length}</span>
                         <Link to="/FormationDisponible">Plus d'info <FaArrowRight /></Link>
                     </div>          
                 </div>
