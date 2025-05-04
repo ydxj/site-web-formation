@@ -13,6 +13,7 @@ function EmployeeManagement() {
     password: '',
     role: 'user',
     service: '',
+    image: null
   });
   const [editingEmployee, setEditingEmployee] = useState(null);
   const [error, setError] = useState('');
@@ -45,13 +46,25 @@ function EmployeeManagement() {
     if (editingEmployee) {
       try {
         const updateData = { ...newEmployee };
-        if (newEmployee.newPassword) {
-          await axios.put(`http://localhost:8081/employees/${editingEmployee.id}/password`, {
-            password: newEmployee.newPassword,
-          });
-          delete updateData.newPassword; 
-        }
-        await axios.put(`http://localhost:8081/employees/${editingEmployee.id}`, updateData);
+        const formData = new FormData();
+        formData.append('name', updateData.name);
+        formData.append('service', updateData.service);
+        formData.append('email', updateData.email);
+        formData.append('role', updateData.role);
+        formData.append('password', updateData.password);
+        formData.append('profile', updateData.image); // this should be a File object
+
+        // if (newEmployee.newPassword) {
+        //   await axios.put(`http://localhost:8081/employees/${editingEmployee.id}/password`, {
+        //     password: newEmployee.newPassword,
+        //   });
+        //   delete updateData.newPassword; 
+        // }
+        await axios.put(`http://localhost:8081/employees/${editingEmployee.id}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
         setEmployees(
           employees.map((employee) =>
             employee.id === editingEmployee.id ? { ...editingEmployee, ...newEmployee } : employee
@@ -63,15 +76,27 @@ function EmployeeManagement() {
         setError('Failed to update employee.');
       }
     } else {
-      try {
-        const res = await axios.post('http://localhost:8081/employees', newEmployee);
-        const addedEmployee = { ...newEmployee, id: res.data.id, fullname: newEmployee.name };
-        setEmployees([...employees, addedEmployee]);
-        resetForm();
-      } catch (err) {
-        console.error('Error adding employee:', err);
-        setError('Failed to add employee.');
-      }
+        const formData = new FormData();
+        formData.append('name', newEmployee.name);
+        formData.append('service', newEmployee.service);
+        formData.append('email', newEmployee.email);
+        formData.append('role', newEmployee.role);
+        formData.append('password', newEmployee.password);
+
+        // 👇 VERY IMPORTANT: this name MUST match `uploadProfile.single('profile')`
+        formData.append('profile', newEmployee.image); // this should be a File object
+
+        try {
+          const res = await axios.post('http://localhost:8081/employees', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+          });
+          const addedEmployee = { ...newEmployee, id: res.data.id, fullname: newEmployee.name };
+          setEmployees([...employees, addedEmployee]);
+          resetForm();
+        } catch (err) {
+          console.error('Error adding employee:', err);
+          setError('Failed to add employee.');
+        }
     }
   };
   
@@ -120,6 +145,10 @@ function EmployeeManagement() {
             <div className="form-group">
               <label htmlFor="password">password</label>
               <input id="password" type="password" value={newEmployee.password} onChange={(e) => setNewEmployee({ ...newEmployee, password: e.target.value })} required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="image">image de profile (optionnel)</label>
+              <input type="file" id="profile" name="profile" accept="image/*" onChange={(e) => setNewEmployee({ ...newEmployee, image: e.target.files[0] })} />
             </div>
             <div className="form-group">
               <label htmlFor="role" className="form-label">Rôle</label>

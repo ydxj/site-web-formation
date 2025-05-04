@@ -10,6 +10,8 @@ function FormationUsers() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
   const [Id, setId] = useState("");
+  const [image, setimage] = useState("");
+  const [imagee, setimagee] = useState("");
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -19,6 +21,7 @@ function FormationUsers() {
         });
         if (response.data.valid) {
           // console.log(response.data)
+          setimagee(response.data.image);
           setId(response.data.id);
         } else {
           console.log("ERREUR")
@@ -31,29 +34,41 @@ function FormationUsers() {
     fetchUserRole();
   }, []);
   const handleChangePassword = async () => {
-    setConfirmPassword('');
-    setCurrentPassword('');
-    setNewPassword('');
     if (newPassword !== confirmPassword) {
       setMessage("New password and confirmation do not match.");
       return;
     }
-
+  
     try {
-      const userId = Id;
-      // console.log(userId+" "+currentPassword+" "+newPassword)
+      const formData = new FormData();
+      formData.append("currentPassword", currentPassword);
+      formData.append("newPassword", newPassword);
+      if (image) {
+        formData.append("profile", image);
+      }
+  
       const response = await axios.put(
-        `http://localhost:8081/employeess/${userId}/password`,
-        { currentPassword, newPassword }
+        `http://localhost:8081/employees/${Id}/password`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
+  
       setMessage(response.data.message);
+      setConfirmPassword("");
+      setCurrentPassword("");
+      setNewPassword("");
+      setimage(null);
     } catch (error) {
       setMessage(
         error.response?.data?.message || "An error occurred. Please try again."
       );
     }
-  
   };
+  
 
   return (
     <div>
@@ -62,6 +77,20 @@ function FormationUsers() {
         <div className="form-section">
           <h2>Changer le mot de passe</h2>
           {message && <p className="message">{message}</p>}
+          <div className="form-group">
+            <label><strong>Photo de profile:</strong></label>
+            <img src={"http://localhost:8081/" + imagee} 
+              style={{ 
+                maxWidth:"200px",
+                maxHeight:"200px"
+              }}
+              alt="profile" />
+            <input
+              type="file"
+              onChange={(e) => setimage(e.target.files[0])}
+              className="form-input"
+            />
+          </div>
           <div className="form-group">
             <label><strong>Mot de passe actuel:</strong></label>
             <input
