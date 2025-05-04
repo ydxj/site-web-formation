@@ -60,7 +60,7 @@ function Card(props) {
         
         {/* Image Placeholder */}
         <div className="card-img-top">
-          <img src="https://via.placeholder.com/150" alt="formation" className="img-fluid" />
+          <img src={`http://localhost:8081/uploads/${formation.image}`} alt="formation" className="img-fluid" />
         </div>
         
         <h1 className="card-title text-primary mt-3">{formation.titre}</h1>

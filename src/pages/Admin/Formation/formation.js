@@ -13,6 +13,7 @@ function Formations() {
     description: '',
     service:'',
     file : null,
+    image : null
   });
   const [editingFormation, setEditingFormation] = useState(null);
   const [error, setError] = useState('');
@@ -46,10 +47,10 @@ function Formations() {
     formData.append('date_debut', newFormation.date_debut);
     formData.append('date_fin', newFormation.date_fin);
     formData.append('service', newFormation.service);
+    formData.append('file', newFormation.file);
+    formData.append('image', newFormation.image);
 
-    if (newFormation.file) {
-      formData.append('file', newFormation.file); // Attach the file
-    }
+
 
     if (editingFormation) {
       try {
@@ -90,7 +91,7 @@ function Formations() {
   };
 
   const resetForm = () => {
-    setNewFormation({ titre: '', duree: '', date_debut: '', date_fin: '', description: '',file:null });
+    setNewFormation({ titre: '', duree: '', date_debut: '', date_fin: '', description: '',file:null,image:null });
     setEditingFormation(null);
   };
 
@@ -103,6 +104,7 @@ function Formations() {
       date_fin: formation.date_fin,
       description: formation.description,
       file : formation.file,
+      image : formation.image,
     });
   };
 
@@ -178,6 +180,16 @@ function Formations() {
               type="file"
               id="file"
               onChange={(e) => setNewFormation({ ...newFormation, file: e.target.files[0] })}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="file">Insérer un photo</label>
+            <input
+              type="file"
+              name="image"
+              id="file"
+              onChange={(e) => setNewFormation({ ...newFormation, image: e.target.files[0] })}
               required
             />
           </div>
