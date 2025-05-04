@@ -55,7 +55,7 @@ function Formations() {
     if (editingFormation) {
       try {
 
-        await axios.put(`http://localhost:8081/formations/${editingFormation.id}`, newFormation);
+        await axios.put(`http://localhost:8081/formations/${editingFormation.id}`, formData,{ headers: { 'Content-Type': 'multipart/form-data' } });
         setFormations(
           formations.map((formation) =>
             formation.id === editingFormation.id ? { ...editingFormation, ...newFormation } : formation
